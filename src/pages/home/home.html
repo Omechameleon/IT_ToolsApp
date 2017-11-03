@@ -1,22 +1,65 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button (click)="Normallogout()"></button>
+    <button (click)="Normallogout()" ion-button>Log Uit</button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding style="background-color: mediumseagreen;">
   <ion-card>
     <ion-card-content>
-      <ion-item>
-        <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
-      </ion-item>
-      <ion-item>
-        <p>Naam: Maxim Heylen</p>
-        <p>Geslacht: Man</p>
-        <p>Locatie: Genk</p>
-        <p>Vakken: Aardrijkskunde, Geschiedenis</p>
-        <p>Ervaring: </p>
-      </ion-item>
+      <div class="MainProfile">
+        <ion-item>
+          <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
+        </ion-item>
+        <ion-item>
+          <table class="profileTable">
+            <tr>
+              <td>
+                Maxim Heylen
+              </td>
+            </tr>
+            <tr>
+              <td>
+                11/06/1995
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Man
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Genk
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Aardrijkskunde, Geschiedenis, lllllllllllllll
+              </td>
+            </tr>
+          </table>
+          <p id="ExperienceDescription">Ervaring:</p>
+          <p id="PersonalInfoDescription">Over Mezelf:</p>
+
+        </ion-item>
+      </div>
     </ion-card-content>
+    <ion-item>
+      <button id="EditProfileButton" ion-button>Bewerk uw profiel</button>
+    </ion-item>
   </ion-card>
+
 </ion-content>
+
+
+
+<!--
+<ion-item>
+  <ion-avatar item-start>
+    <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
+  </ion-avatar>
+  <h2>Marty McFly</h2>
+  <p>November 5, 1955</p>
+</ion-item>
+-->
