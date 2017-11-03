@@ -11,7 +11,6 @@ import { LoginPage } from "../login/login";
 
 
 
-@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -25,12 +24,6 @@ export class HomePage {
 
 
   Normallogout(){
-      
-      this.navCtrl.push(LoginPage);
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
       }
 
 }
