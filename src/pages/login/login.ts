@@ -31,7 +31,7 @@ export class LoginPage {
   Normallogin(){
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
     .then((response)=>{
-      /*alert("logged in");*/
+      
       this.navCtrl.push(HomePage);
     })
     .catch((error)=>{
