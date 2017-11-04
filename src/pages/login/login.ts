@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { HomePage } from "../home/home";
-
+import { SignupPage } from '../signup/signup';
 /**
  * Generated class for the LoginPage page.
  *
@@ -11,16 +11,18 @@ import { HomePage } from "../home/home";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
   providers: [AngularFireAuth]
 })
 export class LoginPage {
-  email:string="pieterjan.defeyter@ucll.be";
-  password:string="test!!";
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth:AngularFireAuth) {
+  loginData = {
+  email: 'pieterjan.defeyter@ucll.be',
+  password: 'test!!'
+  }
+  constructor(private navCtrl: NavController, public navParams: NavParams, private afAuth:AngularFireAuth, private toastCtrl: ToastController) {
 
   }
 
@@ -28,19 +30,23 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  Normallogin(){
-    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
-    .then((response)=>{
-
+  teacherLogin(){
+    this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
+    .then(auth =>{
       this.navCtrl.push(HomePage);
     })
-    .catch((error)=>{
-      console.log(error);
-    })
+    .catch(err =>{
+      // Handle error
+      let toast = this.toastCtrl.create({
+        message: err.message,
+        duration: 5000
+      });
+      toast.present();
+    });
   }
 
-  Normallogout(){
-
+  teacherSignup(){
+    this.navCtrl.push(SignupPage, { email: this.loginData.email });
   }
 
 

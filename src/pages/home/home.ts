@@ -6,11 +6,6 @@ import { LoginPage } from "../login/login";
 
 
 
-
-
-
-
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -18,12 +13,15 @@ import { LoginPage } from "../login/login";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(private navCtrl: NavController, private auth: AngularFireAuth)
+  {
 
   }
 
 
-  Normallogout(){
-      }
+  teacherSignout()
+  {
+    this.auth.auth.signOut();
+  }
 
 }
