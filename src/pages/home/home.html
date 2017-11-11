@@ -22,7 +22,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.name}}</ion-label>
+                  <ion-label>{{(teacherProfileData | async)?.name}}</ion-label>
                 </ion-item>
               </td>
             </tr>
@@ -34,7 +34,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.age}}</ion-label>
+                  <ion-label>{{(teacherProfileData | async)?.age}}</ion-label>
                 </ion-item>
               </td>
             </tr>
@@ -46,7 +46,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.location}}</ion-label>
+                  <ion-label>{{(teacherProfileData | async)?.location}}</ion-label>
                 </ion-item>
               </td>
             </tr>
@@ -58,7 +58,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.classes}}</ion-label>
+                  <ion-label>{{(teacherProfileData | async)?.classes}}</ion-label>
                 </ion-item>
               </td>
             </tr>
@@ -66,11 +66,11 @@
 
           <ion-item>
             <ion-label>Ervaring:</ion-label>
-            <ion-label>{{(teacherProfileData.name | async)?.experience}}</ion-label>
+            <ion-label>{{(teacherProfileData | async)?.experience}}</ion-label>
           </ion-item>
           <ion-item>
             <ion-label>Over mezelf:</ion-label>
-            <ion-label>{{(teacherProfileData.name | async)?.about}}</ion-label>
+            <ion-label>{{(teacherProfileData | async)?.about}}</ion-label>
           </ion-item>
 
       </div>
