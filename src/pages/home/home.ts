@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController  } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { LoginPage } from "../login/login";
-
+import { LoginPage } from '../login/login';
+import { EditprofilePage } from '../editprofile/editprofile';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import { TeacherProfile } from './../../models/teacherProfile';
 
 
 @Component({
@@ -13,15 +16,41 @@ import { LoginPage } from "../login/login";
 })
 export class HomePage {
 
-  constructor(private navCtrl: NavController, private auth: AngularFireAuth)
-  {
+  teacherProfileData: FirebaseObjectObservable<TeacherProfile>
+
+  constructor(private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
+  {}
+
+  ionViewWillLoad(){
+    this.afAuth.authState.take(1).subscribe(data => {
+      if(data && data.email && data.uid) {
+        this.toastCtrl.create({
+          message: 'Welkom' + data.email,
+          duration: 3000
+        }).present();
+
+        this.teacherProfileData = this.afDatabase.object('profile/' + data.uid)
+
+      }
+      else{
+        this.toastCtrl.create({
+          message: 'Kon geen authenticatiedetails vinden',
+          duration: 3000
+        }).present();
+      }
+    })
 
   }
 
 
   teacherSignout()
   {
-    this.auth.auth.signOut();
+    this.afAuth.auth.signOut();
+  }
+
+  editProfile()
+  {
+    this.navCtrl.push(EditprofilePage);
   }
 
 }

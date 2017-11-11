@@ -1,8 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <button (click)="teacherSignout()" icon-only ion-button>
-      <ion-icon name="power"></ion-icon>
-    </button>
+    <ion-title>Profiel bewerken</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,7 +11,7 @@
         <ion-item>
           <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
         </ion-item>
-          <table class="profileTable">
+           <table class="profileTable">
             <tr>
               <td>
                 <ion-item>
@@ -22,7 +20,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.name}}</ion-label>
+                  <ion-input [(ngModel)]="profile.name"></ion-input>
                 </ion-item>
               </td>
             </tr>
@@ -34,7 +32,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.age}}</ion-label>
+                  <ion-input [(ngModel)]="profile.age"></ion-input>
                 </ion-item>
               </td>
             </tr>
@@ -46,7 +44,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.location}}</ion-label>
+                  <ion-input [(ngModel)]="profile.location"></ion-input>
                 </ion-item>
               </td>
             </tr>
@@ -58,7 +56,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData.name | async)?.classes}}</ion-label>
+                  <ion-input [(ngModel)]="profile.classes"></ion-input>
                 </ion-item>
               </td>
             </tr>
@@ -66,30 +64,18 @@
 
           <ion-item>
             <ion-label>Ervaring:</ion-label>
-            <ion-label>{{(teacherProfileData.name | async)?.experience}}</ion-label>
+            <ion-input [(ngModel)]="profile.experience"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Over mezelf:</ion-label>
-            <ion-label>{{(teacherProfileData.name | async)?.about}}</ion-label>
+            <ion-input [(ngModel)]="profile.about"></ion-input>
           </ion-item>
 
       </div>
     </ion-card-content>
     <ion-item>
-      <button full ion-button (click)="editProfile()">Bewerk uw profiel</button>
+      <button full ion-button (click)="saveProfile()">Opslaan</button>
     </ion-item>
   </ion-card>
 
 </ion-content>
-
-
-
-<!--
-<ion-item>
-  <ion-avatar item-start>
-    <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
-  </ion-avatar>
-  <h2>Marty McFly</h2>
-  <p>November 5, 1955</p>
-</ion-item>
--->

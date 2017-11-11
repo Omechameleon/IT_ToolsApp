@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { HomePage } from "../home/home";
 import { SignupPage } from '../signup/signup';
+import { EditprofilePage } from '../editprofile/editprofile';
 /**
  * Generated class for the LoginPage page.
  *
@@ -33,7 +34,7 @@ export class LoginPage {
   teacherLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
     .then(auth =>{
-      this.navCtrl.push(HomePage);
+      this.navCtrl.setRoot(EditprofilePage);
     })
     .catch(err =>{
       // Handle error
