@@ -34,7 +34,7 @@ export class LoginPage {
   teacherLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
     .then(auth =>{
-      this.navCtrl.setRoot(EditprofilePage);
+      this.navCtrl.setRoot(HomePage);
     })
     .catch(err =>{
       // Handle error
