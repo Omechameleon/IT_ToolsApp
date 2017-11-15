@@ -5,7 +5,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { HomePage } from "../home/home";
 import { SignupPage } from '../signup/signup';
-import { TeacherProfile } from "../../models/teacherProfile"
 
 
 @IonicPage()
@@ -15,8 +14,6 @@ import { TeacherProfile } from "../../models/teacherProfile"
 })
 export class EditprofilePage {
 
-  profile = {} as TeacherProfile;
-
   constructor( private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -25,10 +22,17 @@ export class EditprofilePage {
     console.log('ionViewDidLoad EditprofilePage');
   }
 
-  saveProfile(){
+  saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string){
     this.afAuth.authState.take(1).subscribe(auth => {
-      this.afDatabase.object('profile/' + auth.uid).set(this.profile)
-      .then(() => this.navCtrl.setRoot(HomePage));
+      const personRef: firebase.database.Reference = firebase.database().ref('/profile/' + auth.uid);
+      personRef.update({
+        name,
+        age,
+        location,
+        classes,
+        experience,
+        about
+      }).then(() => this.navCtrl.setRoot(HomePage));
     })
   }
 }

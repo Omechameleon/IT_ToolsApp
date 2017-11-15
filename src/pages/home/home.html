@@ -14,7 +14,7 @@
           <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
         </ion-item>
           <table class="profileTable">
-<!--
+
             <tr>
               <td>
                 <ion-item>
@@ -23,7 +23,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData | async)?.name}}</ion-label>
+                <ion-label>{{teacherProfileData.name}}</ion-label>
                 </ion-item>
               </td>
             </tr>
@@ -35,7 +35,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData | async)?.age}}</ion-label>
+                  <ion-label>{{teacherProfileData.age}}</ion-label>
                 </ion-item>
               </td>
             </tr>
@@ -47,7 +47,7 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData | async)?.location}}</ion-label>
+                  <ion-label>{{teacherProfileData.location}}</ion-label>
                 </ion-item>
               </td>
             </tr>
@@ -59,22 +59,21 @@
               </td>
               <td>
                 <ion-item>
-                  <ion-label>{{(teacherProfileData | async)?.classes}}</ion-label>
+                  <ion-label>{{teacherProfileData.classes}}</ion-label>
                 </ion-item>
               </td>
             </tr>
--->
           </table>
-<!--
+
           <ion-item>
             <ion-label>Ervaring:</ion-label>
-            <ion-label>{{(teacherProfileData | async)?.experience}}</ion-label>
+            <ion-label>{{teacherProfileData.experience}}</ion-label>
           </ion-item>
           <ion-item>
             <ion-label>Over mezelf:</ion-label>
-            <ion-label>{{(teacherProfileData | async)?.about}}</ion-label>
+            <ion-label>{{teacherProfileData.about}}</ion-label>
           </ion-item>
--->
+
       </div>
     </ion-card-content>
     <ion-item>
