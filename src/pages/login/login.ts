@@ -23,18 +23,18 @@ export class LoginPage {
   email: 'pieterjan.defeyter@ucll.be',
   password: 'test!!'
   }
-  
+
   constructor(private navCtrl: NavController, public navParams: NavParams, private afAuth:AngularFireAuth, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    //console.log('ionViewDidLoad LoginPage');
   }
 
   teacherLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
     .then(auth =>{
-      this.navCtrl.setRoot(HomePage);
+      //this.navCtrl.setRoot(HomePage);
     })
     .catch(err =>{
       let toast = this.toastCtrl.create({

@@ -38,12 +38,6 @@ export class HomePage {
             this.teacherProfileData = personSnapshot.val();
           });
       }
-      else{
-        this.toastCtrl.create({
-          message: 'Kon geen authenticatiedetails vinden',
-          duration: 3000
-        }).present();
-      }
     })
   }
 
