@@ -15,14 +15,14 @@ export class MyApp {
 
   constructor(platform: Platform, private afAuth: AngularFireAuth, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     this.afAuth.authState.subscribe(auth => {
-      if(!auth)
+      if(!auth){
         this.rootPage = LoginPage;
-      else
+        }
+      else{
         this.rootPage = HomePage;
+        }
     });
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });

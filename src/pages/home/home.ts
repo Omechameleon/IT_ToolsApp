@@ -18,9 +18,9 @@ export class HomePage {
   public teacherProfileData = {};
 
   constructor(private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
-  {this.afAuth.authState.take(1).subscribe(data => {
+  { /*this.afAuth.authState.take(1).subscribe(data => {
     this.teacherProfileData = this.afDatabase.list('/profile/' + data.uid).valueChanges();
-  })
+    })*/
   }
 
   ionViewDidLoad(){
@@ -51,6 +51,7 @@ export class HomePage {
   teacherSignout()
   {
     this.afAuth.auth.signOut();
+    this.navCtrl.setRoot(LoginPage);
   }
 
   editProfile()

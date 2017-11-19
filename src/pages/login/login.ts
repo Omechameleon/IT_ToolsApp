@@ -23,8 +23,8 @@ export class LoginPage {
   email: 'pieterjan.defeyter@ucll.be',
   password: 'test!!'
   }
+  
   constructor(private navCtrl: NavController, public navParams: NavParams, private afAuth:AngularFireAuth, private toastCtrl: ToastController) {
-
   }
 
   ionViewDidLoad() {
@@ -37,7 +37,6 @@ export class LoginPage {
       this.navCtrl.setRoot(HomePage);
     })
     .catch(err =>{
-      // Handle error
       let toast = this.toastCtrl.create({
         message: err.message,
         duration: 5000
