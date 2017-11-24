@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { HomePage } from "../home/home";
+import { TeacherhomePage } from "../teacherhome/teacherhome";
 import { SignupPage } from '../signup/signup';
 
 
@@ -24,7 +24,7 @@ export class EditprofilePage {
 
   saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string){
     this.afAuth.authState.take(1).subscribe(auth => {
-      const personRef: firebase.database.Reference = firebase.database().ref('/profile/' + auth.uid);
+      const personRef: firebase.database.Reference = firebase.database().ref('/teacher/' + auth.uid);
       personRef.update({
         name,
         age,
@@ -32,7 +32,7 @@ export class EditprofilePage {
         classes,
         experience,
         about
-      }).then(() => this.navCtrl.setRoot(HomePage));
+      }).then(() => this.navCtrl.setRoot(TeacherhomePage));
     })
   }
 }

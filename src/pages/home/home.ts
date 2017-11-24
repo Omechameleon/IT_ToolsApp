@@ -7,6 +7,8 @@ import { EditprofilePage } from '../editprofile/editprofile';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import {Observable} from 'rxjs/Observable';
+import { TeacherhomePage } from '../teacherhome/teacherhome';
+import { SchoolhomePage } from '../schoolhome/schoolhome';
 
 @Component({
   selector: 'page-home',
@@ -15,42 +17,59 @@ import {Observable} from 'rxjs/Observable';
 })
 export class HomePage {
 
-  public teacherProfileData = {};
-
+  public teacherProfileData = {TorS: ''};
+  public schoolProfileData = {TorS: ''};
   constructor(private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
-  { /*this.afAuth.authState.take(1).subscribe(data => {
-    this.teacherProfileData = this.afDatabase.list('/profile/' + data.uid).valueChanges();
-    })*/
-  }
-
-  ionViewDidLoad(){
-    this.afAuth.authState.take(1).subscribe(data => {
-      if(data && data.email && data.uid)
-      {
-        this.toastCtrl.create(
-          {
-            message: 'Welkom ' + data.email,
-            duration: 3000
-          })
-          .present();
-          const personRef: firebase.database.Reference = firebase.database().ref(`/profile/` + data.uid);
-          personRef.on('value', personSnapshot => {
-            this.teacherProfileData = personSnapshot.val();
-          });
-      }
-    })
-  }
-
-
-  teacherSignout()
   {
-    this.afAuth.auth.signOut();
-    this.navCtrl.setRoot(LoginPage);
+    this.onReached();
   }
 
-  editProfile()
+
+  redirect()
   {
-    this.navCtrl.push(EditprofilePage);
+    if(this.teacherProfileData != null)
+    {
+      this.navCtrl.setRoot(TeacherhomePage);
+    }
+    else if(this.schoolProfileData != null)
+    {
+      this.navCtrl.setRoot(SchoolhomePage);
+    }
+    else{
+      this.toastCtrl.create(
+        {
+          message: "Alles KAPOT!!",
+          duration: 5000
+        })
+        .present();
+    }
   }
 
+  onReached()
+  {
+    var check1 = 0;
+    var check2 = 0;
+
+    this.afAuth.authState.take(1).subscribe(data =>
+    { 
+      
+      const personRef1: firebase.database.Reference = firebase.database().ref(`/teacher/` + data.uid);
+      personRef1.on('value', personSnapshot => {
+        this.teacherProfileData = personSnapshot.val();
+        check1 = 1;
+        if (check2 == 1) {
+          this.redirect();
+        }
+      });
+      
+      const personRef2: firebase.database.Reference = firebase.database().ref(`/school/` + data.uid);
+      personRef2.on('value', personSnapshot => {
+        this.schoolProfileData = personSnapshot.val();
+        check2 = 1;
+        if (check1 == 1) {
+          this.redirect();
+        }
+      });  
+    });
+  }
 }

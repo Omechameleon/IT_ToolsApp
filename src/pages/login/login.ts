@@ -20,7 +20,7 @@ import { EditprofilePage } from '../editprofile/editprofile';
 })
 export class LoginPage {
   loginData = {
-  email: 'pieterjan.defeyter@ucll.be',
+  email: 'pieterjan.defeyter@ucll.teacher',
   password: 'test!!'
   }
 

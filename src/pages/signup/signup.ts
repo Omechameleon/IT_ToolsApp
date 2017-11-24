@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { HomePage } from "../home/home";
 import * as firebase from 'firebase/app';
 
 
@@ -27,6 +26,11 @@ export class SignupPage {
     TorS: ''
   };
 
+  torsData = {
+    teacherBranch : "/teacher/",
+    schoolBranch : "/school/"
+  };
+
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
     private alertCtrl: AlertController,
@@ -48,8 +52,14 @@ export class SignupPage {
 
     this.afAuth.auth.createUserWithEmailAndPassword(this.signupData.email, this.signupData.password)
         .then(auth => {
-          this.saveProfile(this.profileData.name, this.profileData.age, this.profileData.location, this.profileData.classes, this.profileData.experience, this.profileData.about, this.profileData.TorS, auth.uid);
-        })
+
+          if(this.profileData.TorS == "teacher"){
+          this.saveProfile(this.profileData.name, this.profileData.age, this.profileData.location, this.profileData.classes, this.profileData.experience, this.profileData.about, this.profileData.TorS, auth.uid, this.torsData.teacherBranch);
+        }
+        else if(this.profileData.TorS == "school"){
+          this.saveProfile(this.profileData.name, this.profileData.age, this.profileData.location, this.profileData.classes, this.profileData.experience, this.profileData.about, this.profileData.TorS, auth.uid, this.torsData.schoolBranch);
+        }
+      })
         .catch(err => {
           let alert = this.alertCtrl.create({
             title: 'Error',
@@ -73,8 +83,8 @@ export class SignupPage {
 
 
 
-      saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string, TorS: string, auth: string): void {
-          const personRef: firebase.database.Reference = firebase.database().ref('/profile/' + auth);
+      saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string, TorS: string, auth: string, branch: string): void {
+          const personRef: firebase.database.Reference = firebase.database().ref(branch + auth);
           personRef.update({
             name,
             age,
