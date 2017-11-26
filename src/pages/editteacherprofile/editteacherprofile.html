@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Leerkrachtprofiel bewerken</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: mediumseagreen;">
+  <ion-card>
+    <ion-card-content>
+      <div class="TeacherProfile">
+        <ion-item>
+          <ion-label floating>Naam</ion-label>
+          <ion-input type="text" [(ngModel)]="name"><!--{{teacherProfileData?.name}}--></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Leeftijd</ion-label>
+          <ion-input [(ngModel)]="age"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Woonplaats</ion-label>
+          <ion-input [(ngModel)]="location"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Vakken</ion-label>
+          <ion-textarea [(ngModel)]="classes"></ion-textarea>
+        </ion-item>      
+        <ion-item>
+          <ion-label floating>Ervaring</ion-label>
+          <ion-textarea [(ngModel)]="experience"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Over mezelf</ion-label>
+          <ion-textarea [(ngModel)]="about"></ion-textarea>
+        </ion-item>
+      </div>
+    </ion-card-content>
+    <ion-item>
+      <button full ion-button (click)="saveProfile(name, age, location, classes, experience, about)">Opslaan</button>
+    </ion-item>
+  </ion-card>
+</ion-content>

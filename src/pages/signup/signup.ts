@@ -95,9 +95,4 @@ export class SignupPage {
             TorS
           });
       }
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
-  }
 }

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController  } from 'ionic-ang
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { LoginPage } from '../login/login';
-import { EditprofilePage } from '../editprofile/editprofile';
+import { EditteacherprofilePage } from '../editteacherprofile/editteacherprofile';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import {Observable} from 'rxjs/Observable';
@@ -18,9 +18,7 @@ export class TeacherhomePage {
   public teacherProfileData = {};
 
   constructor(private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
-  { /*this.afAuth.authState.take(1).subscribe(data => {
-    this.teacherProfileData = this.afDatabase.list('/profile/' + data.uid).valueChanges();
-    })*/
+  { 
   }
 
   ionViewDidLoad(){
@@ -51,7 +49,7 @@ export class TeacherhomePage {
 
   editProfile()
   {
-    this.navCtrl.push(EditprofilePage);
+    this.navCtrl.push(EditteacherprofilePage);
   }
 
 }

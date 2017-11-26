@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { LoginPage } from '../login/login';
-import { EditprofilePage } from '../editprofile/editprofile';
+import { EditteacherprofilePage } from '../editteacherprofile/editteacherprofile';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import {Observable} from 'rxjs/Observable';
@@ -19,12 +19,20 @@ export class HomePage {
 
   public teacherProfileData = {TorS: ''};
   public schoolProfileData = {TorS: ''};
-  constructor(private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
+  constructor(private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth, private loadingCtrl: LoadingController)
   {
     this.onReached();
   }
 
-
+  ionViewDidLoad() 
+  {
+    let loader = this.loadingCtrl.create({
+      content: "Even geduld, aub...",
+      dismissOnPageChange: true
+    });
+    loader.present();
+  }
+  
   redirect()
   {
     if(this.teacherProfileData != null)

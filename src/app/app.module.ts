@@ -10,7 +10,9 @@ import { TeacherhomePage } from '../pages/teacherhome/teacherhome';
 import { SchoolhomePage } from '../pages/schoolhome/schoolhome';
 import { LoginPage } from "../pages/login/login";
 import { SignupPage } from "../pages/signup/signup";
-import { EditprofilePage } from "../pages/editprofile/editprofile";
+import { EditteacherprofilePage } from "../pages/editteacherprofile/editteacherprofile";
+import { EditschoolprofilePage } from '../pages/editschoolprofile/editschoolprofile';
+import { TeacherlistPage } from '../pages/teacherlist/teacherlist';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -30,9 +32,11 @@ export const firebaseConfig = {
     HomePage,
     LoginPage,
     SignupPage,
-    EditprofilePage,
+    EditteacherprofilePage,
     TeacherhomePage,
-    SchoolhomePage
+    SchoolhomePage,
+    EditschoolprofilePage,
+    TeacherlistPage
   ],
   imports: [
     BrowserModule,
@@ -47,9 +51,11 @@ export const firebaseConfig = {
     HomePage,
     LoginPage,
     SignupPage,
-    EditprofilePage,
+    EditteacherprofilePage,
     TeacherhomePage,
-    SchoolhomePage
+    SchoolhomePage,
+    EditschoolprofilePage,
+    TeacherlistPage
   ],
   providers: [
     StatusBar,

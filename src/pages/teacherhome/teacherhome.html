@@ -1,12 +1,34 @@
 <ion-header>
   <ion-navbar>
-    <button (click)="signout()" icon-only ion-button>
-      <ion-icon name="power"></ion-icon>
+    <button menuToggle icon-only ion-button>
+      <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-title>Leerkrachtprofiel</ion-title>
   </ion-navbar>
 </ion-header>
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <button ion-item menuClose >
+        Home
+      </button>
+      <button ion-item menuClose >
+        Cats
+      </button>
+      <button ion-item menuClose >
+        Dogs
+      </button>
+      <button ion-item menuClose (click)="signout()" >
+        Uitloggen
+      </button>
+    </ion-list>
+  </ion-content>  
+</ion-menu>
+  
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
 
-<ion-content padding style="background-color: mediumseagreen;">
+
+<ion-content padding id="teacherContent">
   <ion-card>
     <ion-card-content>
       <div class="teacherProfile">

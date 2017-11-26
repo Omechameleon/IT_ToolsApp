@@ -9,18 +9,31 @@ import { SignupPage } from '../signup/signup';
 
 @IonicPage()
 @Component({
-  selector: 'page-editprofile',
-  templateUrl: 'editprofile.html',
+  selector: 'page-editteacherprofile',
+  templateUrl: 'editteacherprofile.html',
 })
-export class EditprofilePage {
+export class EditteacherprofilePage {
+
+  public teacherProfileData = {};
 
   constructor( private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditprofilePage');
+  ionViewDidLoad(){
+    this.afAuth.authState.take(1).subscribe(data => {
+      if(data && data.uid)
+      {
+        const personRef: firebase.database.Reference = firebase.database().ref(`/teacher/` + data.uid);
+        personRef.on('value', personSnapshot => {
+          this.teacherProfileData = personSnapshot.val();
+          console.log(this.teacherProfileData);
+        });
+      }
+    })
   }
+
+
 
   saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string){
     this.afAuth.authState.take(1).subscribe(auth => {
