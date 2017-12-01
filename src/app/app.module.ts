@@ -14,6 +14,9 @@ import { EditteacherprofilePage } from "../pages/editteacherprofile/editteacherp
 import { EditschoolprofilePage } from '../pages/editschoolprofile/editschoolprofile';
 import { TeacherlistPage } from '../pages/teacherlist/teacherlist';
 import { SchoolchatPage } from '../pages/schoolchat/schoolchat';
+import { TeacherchatPage } from '../pages/teacherchat/teacherchat';
+import { SchoolchatselectionPage } from '../pages/schoolchatselection/schoolchatselection';
+import { TeacherchatselectionPage } from '../pages/teacherchatselection/teacherchatselection';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -38,7 +41,10 @@ export const firebaseConfig = {
     SchoolhomePage,
     EditschoolprofilePage,
     TeacherlistPage,
-    SchoolchatPage
+    SchoolchatPage,
+    TeacherchatPage,
+    SchoolchatselectionPage,
+    TeacherchatselectionPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,10 @@ export const firebaseConfig = {
     SchoolhomePage,
     EditschoolprofilePage,
     TeacherlistPage,
-    SchoolchatPage
+    SchoolchatPage,
+    TeacherchatPage,
+    SchoolchatselectionPage,
+    TeacherchatselectionPage
   ],
   providers: [
     StatusBar,
