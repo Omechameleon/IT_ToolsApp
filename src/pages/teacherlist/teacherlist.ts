@@ -5,7 +5,7 @@ import * as firebase from 'firebase/app';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import { Observable } from 'rxjs/Observable';
-import { ChatPage } from '../chat/chat';
+import { SchoolchatPage } from '../schoolchat/schoolchat';
 
 /**
  * Generated class for the TeacherlistPage page.
@@ -86,7 +86,7 @@ export class TeacherlistPage {
           text: 'Stuur een Boodschap?',
           handler: () => {
             console.log('boodschap gestuurd!');
-            this.navCtrl.push(ChatPage, {
+            this.navCtrl.push(SchoolchatPage, {
               teacherAuthentication: auth
             });
           }

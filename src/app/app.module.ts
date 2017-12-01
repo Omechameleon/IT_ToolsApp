@@ -13,7 +13,7 @@ import { SignupPage } from "../pages/signup/signup";
 import { EditteacherprofilePage } from "../pages/editteacherprofile/editteacherprofile";
 import { EditschoolprofilePage } from '../pages/editschoolprofile/editschoolprofile';
 import { TeacherlistPage } from '../pages/teacherlist/teacherlist';
-import { ChatPage } from '../pages/chat/chat';
+import { SchoolchatPage } from '../pages/schoolchat/schoolchat';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -38,7 +38,7 @@ export const firebaseConfig = {
     SchoolhomePage,
     EditschoolprofilePage,
     TeacherlistPage,
-    ChatPage
+    SchoolchatPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +58,7 @@ export const firebaseConfig = {
     SchoolhomePage,
     EditschoolprofilePage,
     TeacherlistPage,
-    ChatPage
+    SchoolchatPage
   ],
   providers: [
     StatusBar,
