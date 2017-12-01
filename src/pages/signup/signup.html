@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content id="signupContent" padding>
   <ion-list>
     <ion-item>
       <ion-label floating>E-Mail</ion-label>
@@ -40,5 +40,5 @@
     </ion-item>
   </ion-list>
 
-  <button full ion-button (click)="signup()" [disabled]="!signupData.email || !signupData.password || !signupData.passwordRetyped || !profileData.TorS">Signup</button>
+  <button class="signupButton" full ion-button (click)="signup()" [disabled]="!signupData.email || !signupData.password || !signupData.passwordRetyped || !profileData.TorS">Signup</button>
 </ion-content>

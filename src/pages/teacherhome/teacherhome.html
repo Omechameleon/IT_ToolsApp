@@ -12,12 +12,6 @@
       <button ion-item menuClose >
         Home
       </button>
-      <button ion-item menuClose >
-        Cats
-      </button>
-      <button ion-item menuClose >
-        Dogs
-      </button>
       <button ion-item menuClose (click)="signout()" >
         Uitloggen
       </button>
@@ -67,21 +61,10 @@
       </div>
     </ion-card-content>
     <ion-item>
-      <button full ion-button (click)="editProfile()">Bewerk uw profiel</button>
+      <button class="editButton" full ion-button (click)="editProfile()">Bewerk uw profiel</button>
     </ion-item>
   </ion-card>
 
 </ion-content>
 
 
-<!--
-<ion-card>
-<ion-item>
-  <ion-avatar item-start>
-    <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
-  </ion-avatar>
-  <h2>Marty McFly</h2>
-  <p>November 5, 1955</p>
-</ion-item>
-</ion-card>
--->

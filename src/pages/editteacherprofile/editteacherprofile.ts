@@ -45,7 +45,7 @@ export class EditteacherprofilePage {
         classes,
         experience,
         about
-      }).then(() => this.navCtrl.setRoot(TeacherhomePage));
+      });
     })
   }
 }

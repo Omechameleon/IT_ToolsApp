@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding style="background-color: mediumseagreen;">
+<ion-content id="editSchoolContent" padding>
   <ion-card>
     <ion-card-content>
       <div class="SchoolProfile">
@@ -25,7 +25,7 @@
       </div>
     </ion-card-content>
     <ion-item>
-      <button full ion-button (click)="saveProfile(name, location)">Opslaan</button>
+      <button class="saveButton" full ion-button (click)="saveProfile(name, location)">Opslaan</button>
     </ion-item>
   </ion-card>
 </ion-content>

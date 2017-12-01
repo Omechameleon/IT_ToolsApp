@@ -11,7 +11,7 @@ r>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="LoginPageContent">
+<ion-content id="loginContent" padding>
   <ion-card>
     <ion-card-content>
       <ion-item>
@@ -25,7 +25,7 @@ r>
         <ion-input type="password" [(ngModel)]="loginData.password"></ion-input>
       </ion-item>
 
-      <button (click)="teacherLogin()" full ion-button [disabled]="!loginData.email || !loginData.password">Log In</button>
+      <button class="loginButton" (click)="teacherLogin()" full ion-button [disabled]="!loginData.email || !loginData.password">Log In</button>
       <a href="#" (click)="teacherSignup()">Signup for an Account</a>
     </ion-card-content>
 

@@ -92,7 +92,8 @@ export class SignupPage {
             classes,
             experience,
             about,
-            TorS
+            TorS,
+            auth
           });
       }
 }

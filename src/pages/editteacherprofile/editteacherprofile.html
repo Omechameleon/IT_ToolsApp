@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding style="background-color: mediumseagreen;">
+<ion-content id="editTeacherContent" padding>
   <ion-card>
     <ion-card-content>
       <div class="TeacherProfile">
@@ -35,7 +35,7 @@
       </div>
     </ion-card-content>
     <ion-item>
-      <button full ion-button (click)="saveProfile(name, age, location, classes, experience, about)">Opslaan</button>
+      <button class="saveButton" full ion-button (click)="saveProfile(name, age, location, classes, experience, about)">Opslaan</button>
     </ion-item>
   </ion-card>
 </ion-content>
