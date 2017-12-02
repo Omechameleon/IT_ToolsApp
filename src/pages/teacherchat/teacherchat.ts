@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
 /**
@@ -16,7 +16,9 @@ import 'rxjs/add/operator/map';
 })
 export class TeacherchatPage {
 
-  //username: string = "";
+  @ViewChild(Content) content: Content;
+  
+  username: string = "";
   teacherAuthentication: string = "";
   schoolAuthentication: string = "";
   message: string = "";
@@ -24,12 +26,18 @@ export class TeacherchatPage {
   messages: object[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) {
+    this.username = navParams.get('teacherAuthentication');
     this.teacherAuthentication = navParams.get('teacherAuthentication');
-    //this.username = navParams.get('teacherAuthentication');
+    this.username = navParams.get('teacherAuthentication');
     this.schoolAuthentication = navParams.get('schoolAuthentication');
     this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' + this.teacherAuthentication).valueChanges().subscribe( data => {
       this.messages = data;
     });
+  }
+
+  ionViewDidEnter() {
+    let dimensions = this.content.getContentDimensions();
+    this.content.scrollTo(0, dimensions.contentHeight+100, 100);
   }
 
   ionViewDidLoad() {
@@ -46,6 +54,7 @@ export class TeacherchatPage {
       username: this.teacherAuthentication
     });
     this.message = "";
+    let dimensions = this.content.getContentDimensions();
+    this.content.scrollTo(0, dimensions.contentHeight+100, 100);  
   }
-
 }

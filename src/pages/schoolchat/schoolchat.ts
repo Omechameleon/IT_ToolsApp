@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content} from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
+
 /**
  * Generated class for the SchoolchatPage page.
  *
@@ -16,6 +17,9 @@ import 'rxjs/add/operator/map';
 })
 export class SchoolchatPage {
 
+  @ViewChild(Content) content: Content;
+
+  username: string = "";
   teacherAuthentication: string = "";
   schoolAuthentication: string = "";
   message: string = "";
@@ -24,6 +28,7 @@ export class SchoolchatPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) 
   {
+    this.username = navParams.get('schoolAuthentication');
     this.teacherAuthentication = navParams.get('teacherAuthentication');
     this.schoolAuthentication = navParams.get('schoolAuthentication');
     this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).valueChanges().subscribe( data => 
@@ -32,13 +37,18 @@ export class SchoolchatPage {
     });
   }
 
+  ionViewDidEnter() {
+    let dimensions = this.content.getContentDimensions();
+    this.content.scrollTo(0, dimensions.contentHeight+100, 100);
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad SchoolchatPage');
   }
 
+
   sendMessage()
   {
-    console.log(this.schoolAuthentication);
     this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).push({
       teacherAuthentication: this.teacherAuthentication,
       schoolAuthentication: this.schoolAuthentication,
@@ -46,6 +56,7 @@ export class SchoolchatPage {
       username: this.schoolAuthentication
     });
     this.message = "";
+    let dimensions = this.content.getContentDimensions();
+    this.content.scrollTo(0, dimensions.contentHeight+100, 100);
   }
-
 }

@@ -16,8 +16,9 @@ page-teacherchat {
         color: white;
 	}
 	.username {
+		visibility: hidden;
 		font-weight: bold;
-		font-size: 80%;
+		font-size: 1px;
 	}
 	.message {
 		font-size: 120%;
@@ -59,9 +60,13 @@ page-teacherchat {
 	}
 	.messageLeft {
 		float: left;
+		overflow:hidden;
+		max-width: 300px;
 	}
 	.messageRight {
 		float: right;
+		overflow:hidden;
+		max-width: 300px;
 	}
 
 	.message.special .innerMessage .messageContent{

@@ -10,14 +10,16 @@ page-schoolchat {
 		margin: 5px;
 		color: white;
 		border-radius: 3px;
+		
 	}
 	.innerMessage.messageRight {
         background-color: mediumseagreen;
         color: white;
 	}
 	.username {
+		visibility: hidden;
 		font-weight: bold;
-		font-size: 80%;
+		font-size: 1px;
 	}
 	.message {
 		font-size: 120%;
@@ -59,9 +61,13 @@ page-schoolchat {
 	}
 	.messageLeft {
 		float: left;
+		overflow:hidden;
+		max-width: 300px;
 	}
 	.messageRight {
 		float: right;
+		max-width: 300px;
+		overflow:hidden;
 	}
 
 	.message.special .innerMessage .messageContent{
