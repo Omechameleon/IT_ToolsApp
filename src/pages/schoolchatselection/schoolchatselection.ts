@@ -57,7 +57,7 @@ export class SchoolchatselectionPage {
     personRef2.on('value', personSnapshot => {
     this.allTeacherData = personSnapshot.val();
     check2 = 1;
-    if((check1 = 1) && (check3 == 1)){
+    if((check1 == 1) && (check3 == 1)){
       this.onDataLoaded();
     }
     });
@@ -66,7 +66,8 @@ export class SchoolchatselectionPage {
     personRef3.on('value', personSnapshot => {
     this.activeChatPartners = Object.keys(personSnapshot.val());
     check2 = 1;
-    if((check1 = 1) && (check2 == 1))
+    console.log(this.activeChatPartners);
+    if((check1 == 1) && (check2 == 1))
     {
       this.onDataLoaded();
     }
@@ -81,7 +82,10 @@ export class SchoolchatselectionPage {
         if(this.tableNames[index] == this.activeChatPartners[index2])
         {
           this.singleTeacherData = this.allTeacherData[this.tableNames[index]];
-          this.allUsableTeacherData[index] = this.singleTeacherData;
+          if((this.singleTeacherData != undefined) && (this.singleTeacherData != null)){
+            this.allUsableTeacherData[index2] = this.singleTeacherData;
+          }
+          
         }
       }
     }

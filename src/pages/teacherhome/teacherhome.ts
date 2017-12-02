@@ -7,6 +7,7 @@ import { EditteacherprofilePage } from '../editteacherprofile/editteacherprofile
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import {Observable} from 'rxjs/Observable';
+import { TeacherchatselectionPage } from '../teacherchatselection/teacherchatselection';
 
 @Component({
   selector: 'page-teacherhome',
@@ -50,6 +51,11 @@ export class TeacherhomePage {
   editProfile()
   {
     this.navCtrl.push(EditteacherprofilePage);
+  }
+
+  teacherchatselectionPage()
+  {
+    this.navCtrl.push(TeacherchatselectionPage);  
   }
 
 }
