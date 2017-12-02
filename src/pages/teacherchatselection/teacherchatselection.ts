@@ -6,6 +6,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import { Observable } from 'rxjs/Observable';
 import { TeacherchatPage } from '../teacherchat/teacherchat';
+import { empty } from 'rxjs/Observer';
 /**
  * Generated class for the TeacherchatselectionPage page.
  *
@@ -87,25 +88,35 @@ export class TeacherchatselectionPage {
   }
 
   checkData()
-  { var index = 0;
+  { 
+    var index = 0;
     for(var schoolUid in this.allChatData) {
-      index++;
       for(var teacherUid in this.allChatData[schoolUid])
       {
-        if(teacherUid == this.teacherAuth)
+        if((teacherUid == this.teacherAuth))
         {
           this.activeChatPartners[index] = schoolUid;
+          index++;
         }
       }
     }
-    console.log(this.activeChatPartners);
+
+    index = 0;
+    for(var schoolUid in this.allSchoolData)
+    {
+      if(this.activeChatPartners[index] == schoolUid)
+      {
+        this.allUsableSchoolData[index] = this.allSchoolData[this.activeChatPartners[index]];
+        index++;
+      }
+    }
   }
 
   openChat(auth: string)
   {
     this.navCtrl.push(TeacherchatPage, {
-      teacherAuthentication: auth,
-      schoolAuthentication: this.teacherAuth
+      teacherAuthentication: this.teacherAuth,
+      schoolAuthentication: auth
     });
   }
 

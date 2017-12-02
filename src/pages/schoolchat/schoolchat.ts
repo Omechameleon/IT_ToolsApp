@@ -33,8 +33,6 @@ export class SchoolchatPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SchoolchatPage');
-    console.log(this.navParams.data);
-    console.log(this.teacherAuthentication);
   }
 
   sendMessage()
@@ -45,6 +43,7 @@ export class SchoolchatPage {
       schoolAuthentication: this.schoolAuthentication,
       message: this.message
     });
+    this.message = "";
   }
 
 }

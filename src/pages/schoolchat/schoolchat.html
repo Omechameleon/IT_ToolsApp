@@ -9,7 +9,7 @@
   <div id="chatMessages">
       <div *ngFor="let message of messages" [class]="message.specialMessage ? 'message special' : 'message'">
           <div [class]="message.username == username ? 'innerMessage messageRight' : 'innerMessage messageLeft'">
-        <div class="username">{{message?.teacherAuthentication}}</div>
+        <div class="username">{{message?.schoolAuthentication}}</div>
         <div class="message">{{message?.message}}</div>
       </div>
     </div>  
