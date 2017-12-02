@@ -28,7 +28,7 @@ export class TeacherchatPage {
     //this.username = navParams.get('teacherAuthentication');
     this.schoolAuthentication = navParams.get('schoolAuthentication');
     this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' + this.teacherAuthentication).valueChanges().subscribe( data => {
-    this.messages = data;
+      this.messages = data;
     });
   }
 
@@ -42,7 +42,8 @@ export class TeacherchatPage {
     this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).push({
       teacherAuthentication: this.teacherAuthentication,
       schoolAuthentication: this.schoolAuthentication,
-      message: this.message
+      message: this.message,
+      username: this.teacherAuthentication
     });
     this.message = "";
   }

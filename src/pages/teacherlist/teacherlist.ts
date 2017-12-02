@@ -57,14 +57,9 @@ export class TeacherlistPage {
 
   onDataLoaded()
   {
-    console.log(this.allTeacherData);
     for (var index = 0; index < this.tableNames.length; index++) {
       this.singleTeacherData = this.allTeacherData[this.tableNames[index]];
-      console.log(this.tableNames[index]);
-      console.log(this.allTeacherData[this.tableNames[index]]);
       this.allUsableTeacherData[index] = this.singleTeacherData;
-      console.log(this.singleTeacherData);
-      console.log(this.allUsableTeacherData);
     }
     
   }

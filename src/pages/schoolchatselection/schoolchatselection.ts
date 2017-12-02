@@ -28,11 +28,11 @@ export class SchoolchatselectionPage {
   public allUsableTeacherData = [];
 
   constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
-    this.afAuth.authState.take(1).subscribe(data => {this.schoolAuth = data.uid});
-    this.afAuth.authState.take(1).subscribe(auth => 
-      {
-        this.onLoading(auth);
-      });
+    
+    this.afAuth.authState.take(1).subscribe(data => {
+      this.schoolAuth = data.uid;
+      this.onLoading(data);
+    });
   }
 
   ionViewDidLoad() {
@@ -66,7 +66,6 @@ export class SchoolchatselectionPage {
     personRef3.on('value', personSnapshot => {
     this.activeChatPartners = Object.keys(personSnapshot.val());
     check2 = 1;
-    console.log(this.activeChatPartners);
     if((check1 == 1) && (check2 == 1))
     {
       this.onDataLoaded();
@@ -85,7 +84,6 @@ export class SchoolchatselectionPage {
           if((this.singleTeacherData != undefined) && (this.singleTeacherData != null)){
             this.allUsableTeacherData[index2] = this.singleTeacherData;
           }
-          
         }
       }
     }
@@ -95,7 +93,7 @@ export class SchoolchatselectionPage {
   {
     this.navCtrl.push(SchoolchatPage, {
       teacherAuthentication: auth,
-      schoolAuthentication: this.schoolAuth
+      schoolAuthentication: this.schoolAuth,
     });
   }
 }

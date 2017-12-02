@@ -26,8 +26,9 @@ export class SchoolchatPage {
   {
     this.teacherAuthentication = navParams.get('teacherAuthentication');
     this.schoolAuthentication = navParams.get('schoolAuthentication');
-    this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).valueChanges().subscribe( data => {
-    this.messages = data;
+    this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).valueChanges().subscribe( data => 
+    {
+      this.messages = data;
     });
   }
 
@@ -41,7 +42,8 @@ export class SchoolchatPage {
     this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).push({
       teacherAuthentication: this.teacherAuthentication,
       schoolAuthentication: this.schoolAuthentication,
-      message: this.message
+      message: this.message,
+      username: this.schoolAuthentication
     });
     this.message = "";
   }
