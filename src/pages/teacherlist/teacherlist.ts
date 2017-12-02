@@ -69,12 +69,14 @@ export class TeacherlistPage {
   showDetails(auth: string)
   {
     var teacherData;
+    var schoolAuth;
+    this.afAuth.authState.take(1).subscribe(data => {schoolAuth = data.uid});
+
     for (var index = 0; index < this.tableNames.length; index++) 
     {
       if(this.tableNames[index] == auth)
       {
         teacherData = this.allUsableTeacherData[index];
-        console.log(teacherData);
       }
     }
 
@@ -87,7 +89,8 @@ export class TeacherlistPage {
           handler: () => {
             console.log('boodschap gestuurd!');
             this.navCtrl.push(SchoolchatPage, {
-              teacherAuthentication: auth
+              teacherAuthentication: auth,
+              schoolAuthentication: schoolAuth
             });
           }
         },

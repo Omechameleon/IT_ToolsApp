@@ -1,17 +1,16 @@
 page-home {
-
+  .teacherProfile{
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+  }
+  
+  #teacherContent{
+    background-color: #0084b4;
+  }
+  
+  .editButton{
+    background-color: mediumseagreen;
+  }
 }
 
-.teacherProfile{
-  width: 90%;
-  margin: auto;
-  padding: 10px;
-}
-
-#teacherContent{
-  background-color: #0084b4;
-}
-
-.editButton{
-  background-color: mediumseagreen;
-}

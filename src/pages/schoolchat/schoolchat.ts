@@ -17,6 +17,7 @@ import 'rxjs/add/operator/map';
 export class SchoolchatPage {
 
   teacherAuthentication: string = "";
+  schoolAuthentication: string = "";
   message: string = "";
   subscription;
   messages: object[] = [];
@@ -24,7 +25,8 @@ export class SchoolchatPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) 
   {
     this.teacherAuthentication = navParams.get('teacherAuthentication');
-    this.subscription = this.afDatabase.list('/chat').valueChanges().subscribe( data => {
+    this.schoolAuthentication = navParams.get('schoolAuthentication');
+    this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).valueChanges().subscribe( data => {
     this.messages = data;
     });
   }
@@ -37,8 +39,10 @@ export class SchoolchatPage {
 
   sendMessage()
   {
-    this.afDatabase.list('/chat').push({
+    console.log(this.schoolAuthentication);
+    this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).push({
       teacherAuthentication: this.teacherAuthentication,
+      schoolAuthentication: this.schoolAuthentication,
       message: this.message
     });
   }

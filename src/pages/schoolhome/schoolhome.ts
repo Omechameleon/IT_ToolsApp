@@ -7,7 +7,8 @@ import { EditschoolprofilePage } from '../editschoolprofile/editschoolprofile';
 import { TeacherlistPage } from '../teacherlist/teacherlist';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
+import { SchoolchatselectionPage } from '../schoolchatselection/schoolchatselection';
 
 
 @IonicPage()
@@ -56,6 +57,11 @@ export class SchoolhomePage {
   teacherlistPage()
   {
     this.navCtrl.push(TeacherlistPage);
+  }
+
+  schoolchatselectionPage()
+  {
+    this.navCtrl.push(SchoolchatselectionPage)
   }
 
 }
