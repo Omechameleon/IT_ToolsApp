@@ -29,23 +29,20 @@
   <ion-card>
     <ion-card-content>
       <div class="teacherProfile">
-        <ion-item>
-          <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
-        </ion-item>
           <ion-item>
-            <ion-label>{{teacherProfileData.name}}</ion-label>
+            <ion-label>{{teacherProfileData?.name}}</ion-label>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{teacherProfileData.age}}</ion-label>
+            <ion-label>{{teacherProfileData?.age}}</ion-label>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{teacherProfileData.location}}</ion-label>
+            <ion-label>{{teacherProfileData?.location}}</ion-label>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{teacherProfileData.classes}}</ion-label>
+            <ion-label>{{teacherProfileData?.classes}}</ion-label>
           </ion-item>
 
 
@@ -53,13 +50,13 @@
             <ion-label>Ervaring:</ion-label>
           </ion-item>
           <ion-item>
-            <ion-label>{{teacherProfileData.experience}}</ion-label>
+            <ion-label>{{teacherProfileData?.experience}}</ion-label>
           </ion-item>
           <ion-item>
             <ion-label>Over mezelf:</ion-label>
           </ion-item>
           <ion-item>
-            <ion-label>{{teacherProfileData.about}}</ion-label>
+            <ion-label>{{teacherProfileData?.about}}</ion-label>
           </ion-item>
       </div>
     </ion-card-content>

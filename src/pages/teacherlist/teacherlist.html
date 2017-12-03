@@ -14,9 +14,6 @@
 <ion-content padding id="teacherList">
   <ion-card *ngFor="let data of allUsableTeacherData">
     <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/imgs/empty_profile1.png" alt="Empty Profile Picture">
-      </ion-avatar>
       <h2>{{data?.name}}</h2>
       <p>{{data?.location}}</p>
       <button class="detailButton" ion-button (click)="showDetails(data?.auth)">Meer info</button>

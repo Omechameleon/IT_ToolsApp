@@ -7,6 +7,8 @@ import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import { Observable } from 'rxjs/Observable';
 import { TeacherchatPage } from '../teacherchat/teacherchat';
 import { empty } from 'rxjs/Observer';
+import { TeacherhomePage } from '../teacherhome/teacherhome';
+
 /**
  * Generated class for the TeacherchatselectionPage page.
  *
@@ -31,12 +33,12 @@ export class TeacherchatselectionPage {
   public chatPerSchool;
   public allChatData = {};
   public possibleChatsData = [];
-  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
     this.afAuth.authState.take(1).subscribe(data => {this.teacherAuth = data.uid});
     this.afAuth.authState.take(1).subscribe(auth => 
       {
         this.onLoading(auth);
-        
       });
   }
 
@@ -109,6 +111,22 @@ export class TeacherchatselectionPage {
         this.allUsableSchoolData[index] = this.allSchoolData[this.activeChatPartners[index]];
         index++;
       }
+    }
+
+    if(!this.allUsableSchoolData){
+    let confirm = this.alertCtrl.create({
+      title: "Geen chats gevonden",
+      message: "U bent nog steeds niet gecontacteerd door een school en hebt dus nog geen actieve chats.",
+      buttons: [
+        {
+          text: 'Keer terug',
+          handler: () => {
+            this.navCtrl.setRoot(TeacherhomePage);
+          }
+        }
+      ]
+    });
+    confirm.present();
     }
   }
 

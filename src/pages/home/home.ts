@@ -59,8 +59,11 @@ export class HomePage {
     var check2 = 0;
 
     this.afAuth.authState.take(1).subscribe(data =>
-    { 
-      
+    { if(!data)
+      {
+        this.navCtrl.setRoot(LoginPage);
+      }
+      else{
       const personRef1: firebase.database.Reference = firebase.database().ref(`/teacher/` + data.uid);
       personRef1.on('value', personSnapshot => {
         this.teacherProfileData = personSnapshot.val();
@@ -77,7 +80,8 @@ export class HomePage {
         if (check1 == 1) {
           this.redirect();
         }
-      });  
+      });
+    }  
     });
   }
 }
