@@ -6,6 +6,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import { Observable } from 'rxjs/Observable';
 import { SchoolchatPage } from '../schoolchat/schoolchat';
+import { SchoolhomePage } from '../schoolhome/schoolhome';
 
 /**
  * Generated class for the SchoolchatselectionPage page.
@@ -27,7 +28,7 @@ export class SchoolchatselectionPage {
   public allTeacherData = {};
   public allUsableTeacherData = [];
 
-  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
     
     this.afAuth.authState.take(1).subscribe(data => {
       this.schoolAuth = data.uid;
@@ -64,12 +65,29 @@ export class SchoolchatselectionPage {
 
     const personRef3: firebase.database.Reference = firebase.database().ref(`/chat/` + auth.uid);
     personRef3.on('value', personSnapshot => {
-    this.activeChatPartners = Object.keys(personSnapshot.val());
-    check2 = 1;
-    if((check1 == 1) && (check2 == 1))
-    {
-      this.onDataLoaded();
-    }
+      if(!personSnapshot.val())
+      {
+        let confirm = this.alertCtrl.create({
+          title: "Geen chats gevonden",
+          message: "U heeft nog geen leerkrachten gecontacteerd.",
+          buttons: 
+          [{
+            text: 'Keer terug',
+            handler: () => {
+              this.navCtrl.push(SchoolhomePage);
+            }
+          }]
+        });
+        confirm.present();
+      }
+      else{
+        this.activeChatPartners = Object.keys(personSnapshot.val());
+        check2 = 1;
+        if((check1 == 1) && (check2 == 1))
+        {
+          this.onDataLoaded();
+        }
+      }
     });
   }
 
@@ -86,8 +104,10 @@ export class SchoolchatselectionPage {
           }
         }
       }
+      console.log(this.allUsableTeacherData);
     }
   }
+  
 
   openChat(auth: string)
   {
