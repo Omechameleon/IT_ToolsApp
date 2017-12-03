@@ -79,13 +79,13 @@ export class TeacherlistPage {
     }
 
     let confirm = this.alertCtrl.create({
-      title: teacherData.name,
-      message: teacherData.classes,
+      title: teacherData.name + ", " + teacherData.age,
+      subTitle: teacherData.classes,
+      message: teacherData.about,
       buttons: [
         {
-          text: 'Stuur een Boodschap?',
+          text: 'Stuur een Boodschap',
           handler: () => {
-            console.log('boodschap gestuurd!');
             this.navCtrl.push(SchoolchatPage, {
               teacherAuthentication: auth,
               schoolAuthentication: schoolAuth
@@ -93,10 +93,7 @@ export class TeacherlistPage {
           }
         },
         {
-          text: 'Keer terug',
-          handler: () => {
-            console.log('Terugkeren geklikt');
-          }          
+          text: 'Keer terug'         
         }
       ]
     });

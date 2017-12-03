@@ -27,10 +27,6 @@ export class LoginPage {
   constructor(private navCtrl: NavController, public navParams: NavParams, private afAuth:AngularFireAuth, private toastCtrl: ToastController) {
   }
 
-  ionViewDidLoad() {
-    //console.log('ionViewDidLoad LoginPage');
-  }
-
   teacherLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
     .then(auth =>{

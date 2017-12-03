@@ -42,7 +42,6 @@ export class EditteacherprofilePage {
         age,
         location,
         classes,
-        experience,
         about
       });
     });

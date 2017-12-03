@@ -40,13 +40,9 @@ export class TeacherchatPage {
     this.content.scrollTo(0, dimensions.contentHeight+100, 100);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TeacherchatPage');
-  }
 
   sendMessage()
   {
-    console.log(this.schoolAuthentication);
     this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).push({
       teacherAuthentication: this.teacherAuthentication,
       schoolAuthentication: this.schoolAuthentication,

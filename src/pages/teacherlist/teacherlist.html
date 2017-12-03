@@ -14,7 +14,7 @@
 <ion-content padding id="teacherList">
   <ion-card *ngFor="let data of allUsableTeacherData">
     <ion-item>
-      <h2>{{data?.name}}</h2>
+      <h2>{{data?.name}}, {{data.age}}</h2>
       <p>{{data?.location}}</p>
       <button class="detailButton" ion-button (click)="showDetails(data?.auth)">Meer info</button>
     </ion-item>

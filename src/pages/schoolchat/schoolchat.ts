@@ -42,11 +42,6 @@ export class SchoolchatPage {
     this.content.scrollTo(0, dimensions.contentHeight+100, 100);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SchoolchatPage');
-  }
-
-
   sendMessage()
   {
     this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).push({

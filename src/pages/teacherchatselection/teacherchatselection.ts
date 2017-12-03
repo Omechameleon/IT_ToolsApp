@@ -36,11 +36,7 @@ export class TeacherchatselectionPage {
         this.onLoading(auth);
       });
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TeacherchatselectionPage');
-  }
-
+  
   onLoading(auth: any) {
     var check1 = 0;
     var check2 = 0;

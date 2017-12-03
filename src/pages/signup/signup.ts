@@ -17,12 +17,6 @@ export class SignupPage {
   };
 
   profileData = {
-    name: 'Je voornaam & naam',
-    age: 'Je leeftijd',
-    location: 'Je woonplaats',
-    classes: 'De vakken die je geeft',
-    experience: 'Je eerdere werkervaring',
-    about: 'Over jezelf',
     TorS: ''
   };
 
@@ -31,7 +25,6 @@ export class SignupPage {
     age: 'Je leeftijd',
     location: 'Je woonplaats',
     classes: 'De vakken die je geeft',
-    experience: 'Je eerdere werkervaring',
     about: 'Over jezelf',
     TorS: 'teacher'
   };
@@ -73,7 +66,7 @@ export class SignupPage {
         .then(auth => {
 
           if(this.profileData.TorS == "teacher"){
-          this.saveTeacherProfile(this.teacherProfileData.name, this.teacherProfileData.age, this.teacherProfileData.location, this.teacherProfileData.classes, this.teacherProfileData.experience, this.teacherProfileData.about, this.teacherProfileData.TorS, auth.uid, this.torsData.teacherBranch);
+          this.saveTeacherProfile(this.teacherProfileData.name, this.teacherProfileData.age, this.teacherProfileData.location, this.teacherProfileData.classes, this.teacherProfileData.about, this.teacherProfileData.TorS, auth.uid, this.torsData.teacherBranch);
         }
         else if(this.profileData.TorS == "school"){
           this.saveSchoolProfile(this.schoolProfileData.name, this.schoolProfileData.location, this.schoolProfileData.TorS, auth.uid, this.torsData.schoolBranch);
@@ -102,14 +95,13 @@ export class SignupPage {
 
 
 
-      saveTeacherProfile(name: string, age: string, location: string, classes: string, experience: string, about: string, TorS: string, auth: string, branch: string): void {
+      saveTeacherProfile(name: string, age: string, location: string, classes: string, about: string, TorS: string, auth: string, branch: string): void {
           const personRef: firebase.database.Reference = firebase.database().ref(branch + auth);
           personRef.update({
             name,
             age,
             location,
             classes,
-            experience,
             about,
             TorS,
             auth

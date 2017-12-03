@@ -36,10 +36,6 @@ export class SchoolchatselectionPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SchoolchatselectionPage');
-  }
-
   onLoading(auth: any) {
     var check1 = 0;
     var check2 = 0;
@@ -104,7 +100,6 @@ export class SchoolchatselectionPage {
           }
         }
       }
-      console.log(this.allUsableTeacherData);
     }
   }
   
