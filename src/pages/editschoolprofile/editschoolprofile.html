@@ -16,16 +16,16 @@
       <div class="SchoolProfile">
         <ion-item>
           <ion-label floating>Naam: </ion-label>
-          <ion-input [(ngModel)]="name"></ion-input>
+          <ion-input [(ngModel)]="schoolProfileData.name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Locatie: </ion-label>
-          <ion-input [(ngModel)]="location"></ion-input>
+          <ion-input [(ngModel)]="schoolProfileData.location"></ion-input>
         </ion-item>
       </div>
     </ion-card-content>
     <ion-item>
-      <button class="saveButton" full ion-button (click)="saveProfile(name, location)">Opslaan</button>
+      <button class="saveButton" full ion-button (click)="saveProfile(schoolProfileData.name, schoolProfileData.location)">Opslaan</button>
     </ion-item>
   </ion-card>
 </ion-content>

@@ -10,32 +10,32 @@
       <div class="TeacherProfile">
         <ion-item>
           <ion-label floating>Naam</ion-label>
-          <ion-input type="text" [(ngModel)]="name"><!--{{teacherProfileData?.name}}--></ion-input>
+          <ion-input type="text" [(ngModel)]="teacherProfileData.name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Leeftijd</ion-label>
-          <ion-input [(ngModel)]="age"></ion-input>
+          <ion-input [(ngModel)]="teacherProfileData.age"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Woonplaats</ion-label>
-          <ion-input [(ngModel)]="location"></ion-input>
+          <ion-input [(ngModel)]="teacherProfileData.location"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Vakken</ion-label>
-          <ion-textarea [(ngModel)]="classes"></ion-textarea>
+          <ion-textarea [(ngModel)]="teacherProfileData.classes"></ion-textarea>
         </ion-item>      
         <ion-item>
           <ion-label floating>Ervaring</ion-label>
-          <ion-textarea [(ngModel)]="experience"></ion-textarea>
+          <ion-textarea [(ngModel)]="teacherProfileData.experience"></ion-textarea>
         </ion-item>
         <ion-item>
           <ion-label floating>Over mezelf</ion-label>
-          <ion-textarea [(ngModel)]="about"></ion-textarea>
+          <ion-textarea [(ngModel)]="teacherProfileData.about"></ion-textarea>
         </ion-item>
       </div>
     </ion-card-content>
     <ion-item>
-      <button class="saveButton" full ion-button (click)="saveProfile(name, age, location, classes, experience, about)">Opslaan</button>
+      <button class="saveButton" full ion-button (click)="saveProfile(teacherProfileData.name, teacherProfileData.age, teacherProfileData.location, teacherProfileData.classes, teacherProfileData.experience, teacherProfileData.about)">Opslaan</button>
     </ion-item>
   </ion-card>
 </ion-content>

@@ -27,10 +27,9 @@ export class EditteacherprofilePage {
         const personRef: firebase.database.Reference = firebase.database().ref(`/teacher/` + data.uid);
         personRef.on('value', personSnapshot => {
           this.teacherProfileData = personSnapshot.val();
-          console.log(this.teacherProfileData);
         });
       }
-    })
+    });
   }
 
 
@@ -46,6 +45,7 @@ export class EditteacherprofilePage {
         experience,
         about
       });
-    })
+    });
+    this.navCtrl.setRoot(TeacherhomePage);
   }
 }

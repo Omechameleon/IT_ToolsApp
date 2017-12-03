@@ -57,6 +57,6 @@ export class SchoolchatPage {
     });
     this.message = "";
     let dimensions = this.content.getContentDimensions();
-    this.content.scrollTo(0, dimensions.contentHeight+100, 100);
+    this.content.scrollTo(0, dimensions.contentHeight+500, 100);
   }
 }

@@ -18,12 +18,22 @@ import { SchoolhomePage } from "../schoolhome/schoolhome";
 })
 export class EditschoolprofilePage {
 
+  public schoolProfileData = {};
+
   constructor( private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditschoolprofilePage');
+  ionViewDidLoad(){
+    this.afAuth.authState.take(1).subscribe(data => {
+      if(data && data.uid)
+      {
+        const personRef: firebase.database.Reference = firebase.database().ref(`/school/` + data.uid);
+        personRef.on('value', personSnapshot => {
+          this.schoolProfileData = personSnapshot.val();
+        });
+      }
+    });
   }
 
   saveProfile(name: string, location: string){
@@ -32,8 +42,9 @@ export class EditschoolprofilePage {
       personRef.update({
         name,
         location,
-      })
-    })
+      });
+    });
+    this.navCtrl.setRoot(SchoolhomePage);
   }
 
 }

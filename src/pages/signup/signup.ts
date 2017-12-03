@@ -26,6 +26,25 @@ export class SignupPage {
     TorS: ''
   };
 
+  teacherProfileData = {
+    name: 'Je voornaam & naam',
+    age: 'Je leeftijd',
+    location: 'Je woonplaats',
+    classes: 'De vakken die je geeft',
+    experience: 'Je eerdere werkervaring',
+    about: 'Over jezelf',
+    TorS: 'teacher'
+  };
+
+  schoolProfileData = {
+    name: 'De schoolnaam',
+    location: 'Schooladres',
+    TorS: 'school'
+  };
+
+  
+
+
   torsData = {
     teacherBranch : "/teacher/",
     schoolBranch : "/school/"
@@ -54,10 +73,10 @@ export class SignupPage {
         .then(auth => {
 
           if(this.profileData.TorS == "teacher"){
-          this.saveProfile(this.profileData.name, this.profileData.age, this.profileData.location, this.profileData.classes, this.profileData.experience, this.profileData.about, this.profileData.TorS, auth.uid, this.torsData.teacherBranch);
+          this.saveTeacherProfile(this.teacherProfileData.name, this.teacherProfileData.age, this.teacherProfileData.location, this.teacherProfileData.classes, this.teacherProfileData.experience, this.teacherProfileData.about, this.teacherProfileData.TorS, auth.uid, this.torsData.teacherBranch);
         }
         else if(this.profileData.TorS == "school"){
-          this.saveProfile(this.profileData.name, this.profileData.age, this.profileData.location, this.profileData.classes, this.profileData.experience, this.profileData.about, this.profileData.TorS, auth.uid, this.torsData.schoolBranch);
+          this.saveSchoolProfile(this.schoolProfileData.name, this.schoolProfileData.location, this.schoolProfileData.TorS, auth.uid, this.torsData.schoolBranch);
         }
       })
         .catch(err => {
@@ -83,7 +102,7 @@ export class SignupPage {
 
 
 
-      saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string, TorS: string, auth: string, branch: string): void {
+      saveTeacherProfile(name: string, age: string, location: string, classes: string, experience: string, about: string, TorS: string, auth: string, branch: string): void {
           const personRef: firebase.database.Reference = firebase.database().ref(branch + auth);
           personRef.update({
             name,
@@ -96,4 +115,14 @@ export class SignupPage {
             auth
           });
       }
+
+      saveSchoolProfile(name: string, location: string, TorS: string, auth: string, branch: string): void {
+        const personRef: firebase.database.Reference = firebase.database().ref(branch + auth);
+        personRef.update({
+          name,
+          location,
+          TorS,
+          auth
+        });
+    }
 }
