@@ -22,17 +22,12 @@ import { TeacherhomePage } from '../teacherhome/teacherhome';
   templateUrl: 'teacherchatselection.html',
 })
 export class TeacherchatselectionPage {
-  tableNames;
   teacherAuth;
-  public allTeacherUids = [];
   public activeChatPartners = [];
-  public PossibleChatPartners = [];
-  public singleSchoolData = {};
   public allSchoolData = {};
   public allUsableSchoolData = [];
-  public chatPerSchool;
   public allChatData = {};
-  public possibleChatsData = [];
+  
 
   constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
     this.afAuth.authState.take(1).subscribe(data => {this.teacherAuth = data.uid});
@@ -49,23 +44,12 @@ export class TeacherchatselectionPage {
   onLoading(auth: any) {
     var check1 = 0;
     var check2 = 0;
-    var check3 = 0;
-    var check4 = 0;
-
-    const personRef1: firebase.database.Reference = firebase.database().ref(`/school/`);
-    personRef1.on('value', personSnapshot => {
-    this.tableNames = Object.keys(personSnapshot.val());
-    check1 = 1;
-    if((check2 == 1) && (check3 == 1) && (check4 == 1)){
-      this.checkData();
-    }
-    });
 
     const personRef2: firebase.database.Reference = firebase.database().ref(`/school/`);
     personRef2.on('value', personSnapshot => {
     this.allSchoolData = personSnapshot.val();
-    check2 = 1;
-    if((check1 == 1) && (check3 == 1) && (check4 == 1)){
+    check1 = 1;
+    if(check2 == 1){
       this.checkData();
     }
     });
@@ -73,17 +57,8 @@ export class TeacherchatselectionPage {
     const personRef3: firebase.database.Reference = firebase.database().ref(`/chat/`);
     personRef3.on('value', personSnapshot => {
     this.allChatData = personSnapshot.val();
-    check3 = 1;
-    if((check1 == 1) && (check2 == 1) && (check4 == 1)){
-      this.checkData();
-    }
-    });
-
-    const personRef4: firebase.database.Reference = firebase.database().ref(`/teacher/`);
-    personRef4.on('value', personSnapshot => {
-    this.allTeacherUids = Object.keys(personSnapshot.val());
-    check4 = 1;
-    if((check1 == 1) && (check2 == 1) && (check3 == 1)){
+    check2 = 1;
+    if(check1 == 1){
       this.checkData();
     }
     });
@@ -111,22 +86,6 @@ export class TeacherchatselectionPage {
         this.allUsableSchoolData[index] = this.allSchoolData[this.activeChatPartners[index]];
         index++;
       }
-    }
-
-    if(!this.allUsableSchoolData){
-    let confirm = this.alertCtrl.create({
-      title: "Geen chats gevonden",
-      message: "U bent nog steeds niet gecontacteerd door een school en hebt dus nog geen actieve chats.",
-      buttons: [
-        {
-          text: 'Keer terug',
-          handler: () => {
-            this.navCtrl.setRoot(TeacherhomePage);
-          }
-        }
-      ]
-    });
-    confirm.present();
     }
   }
 
