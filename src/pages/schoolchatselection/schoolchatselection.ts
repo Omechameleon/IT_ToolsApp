@@ -65,16 +65,14 @@ export class SchoolchatselectionPage {
       {
         let confirm = this.alertCtrl.create({
           title: "Geen chats gevonden",
-          message: "U heeft nog geen leerkrachten gecontacteerd.",
+          message: "U hebt nog geen leerkrachten gecontacteerd.",
           buttons: 
           [{
-            text: 'Keer terug',
-            handler: () => {
-              this.navCtrl.push(SchoolhomePage);
-            }
+            text: 'Sluiten'
           }]
         });
         confirm.present();
+        this.navCtrl.setRoot(SchoolhomePage);
       }
       else{
         this.activeChatPartners = Object.keys(personSnapshot.val());
@@ -110,5 +108,27 @@ export class SchoolchatselectionPage {
       teacherAuthentication: auth,
       schoolAuthentication: this.schoolAuth,
     });
+  }
+
+  deleteChat(teacherAuth: string)
+  {
+    let confirm = this.alertCtrl.create({
+      title: "Waarschuwing",
+      subTitle: "U staat op het punt om de chat met deze leerkracht te verwijderen.",
+      buttons: [
+        {
+          text: 'Verwijder',
+          handler: () => {
+            this.navCtrl.push(SchoolchatselectionPage);
+            const personRef: firebase.database.Reference = firebase.database().ref('/chat/' + this.schoolAuth+ '/' + teacherAuth);
+            personRef.remove();
+          }
+        },
+        {
+          text: 'Annuleren'         
+        }
+      ]
+    });
+    confirm.present();
   }
 }

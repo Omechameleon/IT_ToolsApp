@@ -10,7 +10,8 @@
   <ion-card *ngFor="let data of allUsableSchoolData">
     <ion-item>
       <h2>{{data?.name}}</h2>
-      <button class="chatButton" ion-button (click)="openChat(data?.auth)">Message</button>
+      <p>{{data?.location}}</p>
+      <button class="chatButton" ion-button (click)="openChat(data?.auth)">Chat</button>
     </ion-item>
   </ion-card>
 </ion-content>
