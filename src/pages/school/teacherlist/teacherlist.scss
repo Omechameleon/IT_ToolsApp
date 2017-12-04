@@ -5,6 +5,31 @@ page-teacherlist {
 
   .detailButton{
     background-color: mediumseagreen;
+    float: right;
+  }
+
+  .profileDataTitle{
+    font-size: 120%;
+    display: inline-block;
+    overflow:hidden;
+    height: auto;
+    margin-bottom: 2px;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-left: 3px;  
+  }
+
+  .profileDataDescr{
+    font-size: 100%;
+    display: inline-block;
+    overflow:hidden;
+    height: auto;
+    padding-top: 3px;
+    padding-left: 3px;
+  }
+
+  .card{
+    border-radius: 3px;
   }
 
 }

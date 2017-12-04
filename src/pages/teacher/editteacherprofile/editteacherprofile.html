@@ -31,7 +31,9 @@
       </div>
     </ion-card-content>
     <ion-item>
-      <button class="saveButton" full ion-button (click)="saveProfile(teacherProfileData.name, teacherProfileData.age, teacherProfileData.location, teacherProfileData.classes, teacherProfileData.experience, teacherProfileData.about)">Opslaan</button>
+      <button class="saveButton" full ion-button (click)="saveProfile(teacherProfileData.name, teacherProfileData.age, teacherProfileData.location, teacherProfileData.classes, teacherProfileData.about)"
+      [disabled]="!teacherProfileData.name || !teacherProfileData.age || !teacherProfileData.location || !teacherProfileData.classes || !teacherProfileData.about">
+      Opslaan</button>
     </ion-item>
   </ion-card>
 </ion-content>

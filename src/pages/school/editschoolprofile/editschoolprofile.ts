@@ -36,15 +36,16 @@ export class EditschoolprofilePage {
     });
   }
 
-  saveProfile(name: string, location: string){
+  saveProfile(name: string, soort: string, location: string){
     this.afAuth.authState.take(1).subscribe(auth => {
       const personRef: firebase.database.Reference = firebase.database().ref('/school/' + auth.uid);
       personRef.update({
         name,
+        soort,
         location,
       });
     });
-    this.navCtrl.setRoot(SchoolhomePage);
+   
   }
 
 }

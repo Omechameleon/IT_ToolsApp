@@ -74,6 +74,20 @@ export class TeacherchatselectionPage {
       }
     }
 
+    if(this.activeChatPartners.length == 0)
+    {
+      let confirm = this.alertCtrl.create({
+        title: "Geen chats gevonden",
+        message: "U bent nog niet door een school gecontacteerd.",
+        buttons: 
+        [{
+          text: 'Sluiten'
+        }]
+      });
+      confirm.present();
+      this.navCtrl.setRoot(TeacherhomePage);
+    }
+
     index = 0;
     for(var schoolUid in this.allSchoolData)
     {
@@ -91,6 +105,28 @@ export class TeacherchatselectionPage {
       teacherAuthentication: this.teacherAuth,
       schoolAuthentication: auth
     });
+  }
+
+  deleteChat(schoolAuth: string)
+  {
+    let confirm = this.alertCtrl.create({
+      title: "Waarschuwing",
+      subTitle: "U staat op het punt om de chat met deze school te verwijderen.",
+      buttons: [
+        {
+          text: 'Verwijder',
+          handler: () => {
+            this.navCtrl.push(TeacherchatselectionPage);
+            const personRef: firebase.database.Reference = firebase.database().ref('/chat/' + schoolAuth+ '/' + this.teacherAuth);
+            personRef.remove();
+          }
+        },
+        {
+          text: 'Annuleren'         
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }

@@ -12,14 +12,12 @@
 
 
 <ion-content padding id="chatList">
-  <ion-card *ngFor="let data of allUsableTeacherData">
-    <ion-item>
-      <h2 id="cardTitle">{{data?.name}}, {{data.age}}</h2>
+  <ion-card class="card" *ngFor="let data of allUsableTeacherData">
+      <div class="profileDataTitle">{{data?.name}}, {{data.age}}</div>
+      <br/><div class="profileDataDescr">{{data?.classes}}</div>
+      <br/><div class="profileDataDescr">{{data?.location}}</div>
       <button class="chatButton" ion-button (click)="openChat(data?.auth)">Chat</button>
-      <p>{{data?.location}}</p>
-      <p id="cardTitle">{{data?.classes}}</p>
       <button class="deleteButton" ion-button (click)="deleteChat(data?.auth)">Verwijder</button>
-    </ion-item>
   </ion-card>
 </ion-content>
 

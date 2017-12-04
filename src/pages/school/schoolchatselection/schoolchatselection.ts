@@ -63,6 +63,7 @@ export class SchoolchatselectionPage {
     personRef3.on('value', personSnapshot => {
       if(!personSnapshot.val())
       {
+        this.navCtrl.setRoot(SchoolhomePage);
         let confirm = this.alertCtrl.create({
           title: "Geen chats gevonden",
           message: "U hebt nog geen leerkrachten gecontacteerd.",
@@ -72,7 +73,7 @@ export class SchoolchatselectionPage {
           }]
         });
         confirm.present();
-        this.navCtrl.setRoot(SchoolhomePage);
+        
       }
       else{
         this.activeChatPartners = Object.keys(personSnapshot.val());

@@ -83,6 +83,9 @@ export class TeacherlistPage {
       message: teacherData.about,
       buttons: [
         {
+          text: 'Keer terug'         
+        },
+        {
           text: 'Stuur een Boodschap',
           handler: () => {
             this.navCtrl.push(SchoolchatPage, {
@@ -90,9 +93,6 @@ export class TeacherlistPage {
               schoolAuthentication: schoolAuth
             });
           }
-        },
-        {
-          text: 'Keer terug'         
         }
       ]
     });

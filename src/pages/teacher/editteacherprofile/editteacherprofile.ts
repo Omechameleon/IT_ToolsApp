@@ -34,7 +34,7 @@ export class EditteacherprofilePage {
 
 
 
-  saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string){
+  saveProfile(name: string, age: string, location: string, classes: string, about: string){
     this.afAuth.authState.take(1).subscribe(auth => {
       const personRef: firebase.database.Reference = firebase.database().ref('/teacher/' + auth.uid);
       personRef.update({
@@ -45,6 +45,5 @@ export class EditteacherprofilePage {
         about
       });
     });
-    this.navCtrl.setRoot(TeacherhomePage);
   }
 }

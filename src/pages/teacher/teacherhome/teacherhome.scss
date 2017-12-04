@@ -6,6 +6,7 @@ page-home {
   width: 90%;
   margin: auto;
   padding: 10px;
+  overflow: hidden;
 }
 
 #teacherContent{
@@ -14,5 +15,31 @@ page-home {
 
 .editButton{
   background-color: mediumseagreen;
+}
+
+.profileDataDiv{
+  font-size: 140%;
+  display: inline-block;
+  overflow:hidden;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.profileDataDiv1{
+  font-weight: bold;
+  font-size: 140%;
+  display: inline-block;
+  overflow:hidden;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.profileDataTitle{
+  font-size: 140%;
+  margin-bottom: 5px;
+}
+
+.profileDataAbout{
+  font-size: 120%;
 }
 

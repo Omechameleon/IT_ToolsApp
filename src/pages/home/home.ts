@@ -3,12 +3,12 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { LoginPage } from '../login/login';
-import { EditteacherprofilePage } from '../editteacherprofile/editteacherprofile';
+import { EditteacherprofilePage } from '../teacher/editteacherprofile/editteacherprofile';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 import {Observable} from 'rxjs/Observable';
-import { TeacherhomePage } from '../teacherhome/teacherhome';
-import { SchoolhomePage } from '../schoolhome/schoolhome';
+import { TeacherhomePage } from '../teacher/teacherhome/teacherhome';
+import { SchoolhomePage } from '../school/schoolhome/schoolhome';
 
 @Component({
   selector: 'page-home',

@@ -4,6 +4,37 @@ page-teacherchatselection {
       }
     
       .chatButton{
+        float: left;
         background-color: mediumseagreen;
+        width: 40%;
+      }
+
+      .deleteButton{
+        float: right;
+        background-color: red;
+        width: 40%;
+      }
+      
+      .profileDataTitle{
+        font-size: 120%;
+        overflow:hidden;
+        height: auto;
+        margin-bottom: 2px;
+        font-weight: bold;
+        padding-top: 3px;
+        padding-left: 3px;  
+      }
+    
+      .profileDataDescr{
+        font-size: 100%;
+        overflow:hidden;
+        height: auto;
+        padding-top: 3px;
+        padding-left: 3px;
+        margin-top: -5%;
+      }
+
+      .card{
+        border-radius: 3px;
       }
 }

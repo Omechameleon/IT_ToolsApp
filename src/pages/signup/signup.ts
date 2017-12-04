@@ -32,6 +32,7 @@ export class SignupPage {
   schoolProfileData = {
     name: 'De schoolnaam',
     location: 'Schooladres',
+    soort: 'Bijvoorbeeld lagere of middelbare school',
     TorS: 'school'
   };
 
@@ -67,7 +68,7 @@ export class SignupPage {
           this.saveTeacherProfile(this.teacherProfileData.name, this.teacherProfileData.age, this.teacherProfileData.location, this.teacherProfileData.classes, this.teacherProfileData.about, this.teacherProfileData.TorS, auth.uid, this.torsData.teacherBranch);
         }
         else if(this.profileData.TorS == "school"){
-          this.saveSchoolProfile(this.schoolProfileData.name, this.schoolProfileData.location, this.schoolProfileData.TorS, auth.uid, this.torsData.schoolBranch);
+          this.saveSchoolProfile(this.schoolProfileData.name, this.schoolProfileData.location, this.schoolProfileData.soort,this.schoolProfileData.TorS, auth.uid, this.torsData.schoolBranch);
         }
       })
         .catch(err => {
@@ -106,11 +107,12 @@ export class SignupPage {
           });
       }
 
-      saveSchoolProfile(name: string, location: string, TorS: string, auth: string, branch: string): void {
+      saveSchoolProfile(name: string, location: string, soort: string, TorS: string, auth: string, branch: string): void {
         const personRef: firebase.database.Reference = firebase.database().ref(branch + auth);
         personRef.update({
           name,
           location,
+          soort,
           TorS,
           auth
         });

@@ -5,12 +5,29 @@ page-schoolhome {
     padding: 10px;
   }
 
-#schoolContent{
-  background-color: #0084b4;
-}
+  #schoolContent{
+    background-color: #0084b4;
+  }
 
-.editButton{
-  background-color: mediumseagreen;
-}
+  .editButton{
+    background-color: mediumseagreen;
+  }
+
+  .profileDataDiv{
+    font-size: 140%;
+    display: inline-block;
+    overflow:hidden;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .profileDataDiv1{
+    font-weight: bold;
+    font-size: 140%;
+    display: inline-block;
+    overflow:hidden;
+    height: auto;
+    margin-bottom: 15px;
+  }
 }
 
