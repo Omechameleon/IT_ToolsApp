@@ -3,48 +3,48 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { TeacherhomePage } from "../teacherhome/teacherhome";
-import { SignupPage } from '../signup/signup';
-
+import { SchoolhomePage } from "../schoolhome/schoolhome";
+/**
+ * Generated class for the EditschoolprofilePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-editteacherprofile',
-  templateUrl: 'editteacherprofile.html',
+  selector: 'page-editschoolprofile',
+  templateUrl: 'editschoolprofile.html',
 })
-export class EditteacherprofilePage {
+export class EditschoolprofilePage {
 
-  public teacherProfileData = {};
+  public schoolProfileData = {};
 
   constructor( private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad(){
+  ionViewDidEnter(){
     this.afAuth.authState.take(1).subscribe(data => {
       if(data && data.uid)
       {
-        const personRef: firebase.database.Reference = firebase.database().ref(`/teacher/` + data.uid);
+        const personRef: firebase.database.Reference = firebase.database().ref(`/school/` + data.uid);
         personRef.on('value', personSnapshot => {
-          this.teacherProfileData = personSnapshot.val();
+          this.schoolProfileData = personSnapshot.val();
         });
       }
     });
   }
 
-
-
-  saveProfile(name: string, age: string, location: string, classes: string, experience: string, about: string){
+  saveProfile(name: string, location: string){
     this.afAuth.authState.take(1).subscribe(auth => {
-      const personRef: firebase.database.Reference = firebase.database().ref('/teacher/' + auth.uid);
+      const personRef: firebase.database.Reference = firebase.database().ref('/school/' + auth.uid);
       personRef.update({
         name,
-        age,
         location,
-        classes,
-        about
       });
     });
-    this.navCtrl.setRoot(TeacherhomePage);
+    this.navCtrl.setRoot(SchoolhomePage);
   }
+
 }

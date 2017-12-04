@@ -61,7 +61,6 @@ export class TeacherlistPage {
       this.singleTeacherData = this.allTeacherData[this.tableNames[index]];
       this.allUsableTeacherData[index] = this.singleTeacherData;
     }
-    
   }
 
   showDetails(auth: string)

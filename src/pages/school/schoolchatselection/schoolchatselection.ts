@@ -35,7 +35,7 @@ export class SchoolchatselectionPage {
       this.onLoading(data);
     });
   }
-
+  
   onLoading(auth: any) {
     var check1 = 0;
     var check2 = 0;

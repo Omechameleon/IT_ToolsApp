@@ -35,8 +35,6 @@ export class SignupPage {
     TorS: 'school'
   };
 
-  
-
 
   torsData = {
     teacherBranch : "/teacher/",

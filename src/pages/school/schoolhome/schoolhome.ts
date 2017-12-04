@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController  } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { LoginPage } from '../login/login';
+import { LoginPage } from '../../login/login';
 import { EditschoolprofilePage } from '../editschoolprofile/editschoolprofile';
 import { TeacherlistPage } from '../teacherlist/teacherlist';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
@@ -29,18 +29,18 @@ export class SchoolhomePage {
       if(data && data.email && data.uid)
       {
         this.toastCtrl.create(
-          {
-            message: 'Welkom ' + data.email,
-            duration: 3000
-          })
-          .present();
+        {
+          message: 'Welkom ' + data.email,
+          duration: 3000
+        })
+        .present();
           
-          const personRef: firebase.database.Reference = firebase.database().ref(`/school/` + data.uid);
-          personRef.on('value', personSnapshot => {
-            this.schoolProfileData = personSnapshot.val();
-          });
+        const personRef: firebase.database.Reference = firebase.database().ref(`/school/` + data.uid);
+        personRef.on('value', personSnapshot => {
+          this.schoolProfileData = personSnapshot.val();
+        });
       }
-    })
+    });
   }
 
   signout()
