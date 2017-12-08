@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { HomePage } from "../home/home";
 import { SignupPage } from '../signup/signup';
+import { ResetpasswordPage } from '../resetpassword/resetpassword';
 /**
  * Generated class for the LoginPage page.
  *
@@ -44,5 +45,9 @@ export class LoginPage {
     this.navCtrl.push(SignupPage, { email: this.loginData.email });
   }
 
+  resetPassword()
+  {
+    this.navCtrl.push(ResetpasswordPage);
+  }
 
 }

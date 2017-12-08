@@ -20,6 +20,7 @@ import { TeacherchatselectionPage } from '../pages/teacher/teacherchatselection/
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ResetpasswordPage } from '../pages/resetpassword/resetpassword';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAmsc5HMgD2Yk-lKzBScBHLem5QSGc7rYc",
@@ -44,7 +45,8 @@ export const firebaseConfig = {
     SchoolchatPage,
     TeacherchatPage,
     SchoolchatselectionPage,
-    TeacherchatselectionPage
+    TeacherchatselectionPage,
+    ResetpasswordPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ export const firebaseConfig = {
     SchoolchatPage,
     TeacherchatPage,
     SchoolchatselectionPage,
-    TeacherchatselectionPage
+    TeacherchatselectionPage,
+    ResetpasswordPage
   ],
   providers: [
     StatusBar,
