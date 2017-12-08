@@ -106,7 +106,6 @@ export class TeacherlistPage {
   searchClasses(zoekterm: string)
   {
     zoekterm = zoekterm.toUpperCase();
-    console.log(zoekterm);
     if(!zoekterm)
     {
       this.onLoading();
