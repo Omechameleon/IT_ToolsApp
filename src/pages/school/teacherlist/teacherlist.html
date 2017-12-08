@@ -8,10 +8,20 @@
   <ion-navbar>
     <ion-title>Leerkrachten</ion-title>
   </ion-navbar>
+
+    <ion-item class="searchItem">
+      <ion-label class="searchLabel" floating>Zoek hier op een vak</ion-label>
+      <ion-input type="text" class="searchBar" [(ngModel)]="searchData"></ion-input>
+    </ion-item>
+      <button class="searchButton" ion-button full (click)="searchClasses(searchData)">Zoeken</button>
 </ion-header>
 
 
 <ion-content padding id="teacherList">
+
+
+  
+
   <ion-card class="card" *ngFor="let data of allUsableTeacherData">
         <div class="profileDataTitle">{{data?.name}}, {{data.age}}</div>
     <br/><div class="profileDataDescr">{{data?.classes}}</div>

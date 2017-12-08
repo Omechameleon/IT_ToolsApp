@@ -21,10 +21,13 @@ import { SchoolchatPage } from '../schoolchat/schoolchat';
 })
 export class TeacherlistPage {
   tableNames;
+  searchData = "";
   public usableTableNames = [];
   public singleTeacherData = {};
   public allTeacherData = {};
   public allUsableTeacherData = [];
+  public backupAllUsableTeacherData = [];
+  
 
   constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
   {
@@ -60,6 +63,7 @@ export class TeacherlistPage {
     for (var index = 0; index < this.tableNames.length; index++) {
       this.singleTeacherData = this.allTeacherData[this.tableNames[index]];
       this.allUsableTeacherData[index] = this.singleTeacherData;
+      this.backupAllUsableTeacherData[index] = this.singleTeacherData;
     }
   }
 
@@ -97,5 +101,47 @@ export class TeacherlistPage {
       ]
     });
     confirm.present();
+  }
+
+  searchClasses(zoekterm: string)
+  {
+    zoekterm = zoekterm.toUpperCase();
+    console.log(zoekterm);
+    if(!zoekterm)
+    {
+      this.onLoading();
+    }
+    else{
+      var index2 = 0;
+      this.allUsableTeacherData = [null];
+      for(var index = 0; index < this.backupAllUsableTeacherData.length; index++)
+      {
+        var specificClass = this.backupAllUsableTeacherData[index].classes;
+        var upperCaseClass = specificClass.toUpperCase();
+        this.backupAllUsableTeacherData[index].classes = upperCaseClass;
+
+        if(this.backupAllUsableTeacherData[index].classes.search(zoekterm) > -1)
+        {
+          this.backupAllUsableTeacherData[index].classes = specificClass;
+          this.allUsableTeacherData[index2] = this.backupAllUsableTeacherData[index];
+          index2++;
+        }
+      }
+      if(!this.allUsableTeacherData[0])
+      {
+        let confirm = this.alertCtrl.create({
+          title: "Geen leerkrachten gevonden!",
+          message: "Deze zoekterm leverde geen resultaten op. Probeer een andere term of controleer dat er geen spelfouten gemaakt zijn.",
+          buttons: [
+            {
+              text: 'Keer terug'         
+            }
+          ]
+        });
+        confirm.present();
+        this.onLoading(); 
+        return;
+      }
+    }
   }
 }

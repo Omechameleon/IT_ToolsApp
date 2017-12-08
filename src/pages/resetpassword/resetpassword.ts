@@ -23,11 +23,9 @@ export class ResetpasswordPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public toastCtrl: ToastController) {
     this.captcha = "";
     this.makeid();
-    console.log(this.captcha);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ResetpasswordPage');
   }
 
   makeid() {
