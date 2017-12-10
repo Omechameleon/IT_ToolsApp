@@ -54,8 +54,6 @@ export class TeacherlistPage {
       this.onDataLoaded();
     }
     });
-
-
   }
 
   onDataLoaded()
@@ -105,10 +103,11 @@ export class TeacherlistPage {
 
   searchClasses(zoekterm: string)
   {
+    this.onLoading();
     zoekterm = zoekterm.toUpperCase();
     if(!zoekterm)
     {
-      this.onLoading();
+      return;
     }
     else{
       var index2 = 0;
