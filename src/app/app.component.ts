@@ -15,6 +15,8 @@ export class MyApp {
   rootPage:any =  HomePage;
 
   constructor(platform: Platform, private afAuth: AngularFireAuth, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+    //Als er geen user geautoriseerd is wordt de gebruiker doorverwezen naar de LoginPage
+    //Als er een user geautoriseerd is wordt de gebruiker doorverwezen naar de HomePage
     this.afAuth.authState.subscribe(auth => {
       if(!auth){
         this.rootPage = LoginPage;

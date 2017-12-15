@@ -10,16 +10,20 @@ import * as firebase from 'firebase/app';
 })
 export class SignupPage {
 
+
+  //signupData bevat de standaarddata waarmee we een profiel aanmaken
   signupData = {
     email: '',
     password: '',
     passwordRetyped: ''
   };
 
+  //profileData bevat enkel TorS en staat apart omdat deze data bepaalt of het om een leerkracht of een school gaat
   profileData = {
     TorS: ''
   };
 
+  //teacherProfileData bevat dummydata waarmee we de database mogelijk vullen voor dit profiel, dit kan de user later aanpassen
   teacherProfileData = {
     name: 'Je voornaam & naam',
     age: 'Je leeftijd',
@@ -29,6 +33,7 @@ export class SignupPage {
     TorS: 'teacher'
   };
 
+  //schoolProfileData bevat dummydata waarmee we de database mogelijk vullen voor dit profiel, dit kan de user later aanpassen
   schoolProfileData = {
     name: 'De schoolnaam',
     location: 'Schooladres',
@@ -36,7 +41,7 @@ export class SignupPage {
     TorS: 'school'
   };
 
-
+  //Deze data vergemakkelijkt het schrijven van het databasepad later
   torsData = {
     teacherBranch : "/teacher/",
     schoolBranch : "/school/"
@@ -50,7 +55,10 @@ export class SignupPage {
     this.signupData.email = this.navParams.get('email');
   }
 
+  //Deze signupfunctie maakt de gebruiker aan in de database indien er aan bepaalde voorwaarden is voldaan
   signup() {
+    
+    //We checken hier of de user correct tweemaal hetzelfde paswoord heeft ingegeven.
     if(this.signupData.password !== this.signupData.passwordRetyped) {
       let alert = this.alertCtrl.create({
         title: 'Foutmelding',
@@ -61,25 +69,27 @@ export class SignupPage {
       return;
     }
 
+    //Hier checken we of de user een leerkracht of school is en maken hem/haar aan in de correcte databasetabel/-branch
+    //Hiervoor hebben we twee verschillende functies voor een leerkracht en school respectievelijk
     this.afAuth.auth.createUserWithEmailAndPassword(this.signupData.email, this.signupData.password)
         .then(auth => {
-
           if(this.profileData.TorS == "teacher"){
           this.saveTeacherProfile(this.teacherProfileData.name, this.teacherProfileData.age, this.teacherProfileData.location, this.teacherProfileData.classes, this.teacherProfileData.about, this.teacherProfileData.TorS, auth.uid, this.torsData.teacherBranch);
-        }
-        else if(this.profileData.TorS == "school"){
+          }
+          else if(this.profileData.TorS == "school"){
           this.saveSchoolProfile(this.schoolProfileData.name, this.schoolProfileData.location, this.schoolProfileData.soort,this.schoolProfileData.TorS, auth.uid, this.torsData.schoolBranch);
-        }
-      })
+          }
+        })
         .catch(err => {
           let alert = this.alertCtrl.create({
             title: 'Error',
-            message: err.message,
+            message: "Er liep iets mis bij het aanmaken van uw profiel. Gelieve uw internetverbinding te controleren en opnieuw te proberen.",
             buttons: ['OK']
           });
           alert.present();
         });
 
+        //Nadat we de user hebben aangemaakt loggen we deze meteen in vanwege gebruiksvriendelijkheid
           this.afAuth.auth.signInWithEmailAndPassword(this.signupData.email, this.signupData.password)
           .then(auth =>{
           })
@@ -93,7 +103,7 @@ export class SignupPage {
       }
 
 
-
+      //Deze functie maakt de user als leerkracht aan in de database
       saveTeacherProfile(name: string, age: string, location: string, classes: string, about: string, TorS: string, auth: string, branch: string): void {
           const personRef: firebase.database.Reference = firebase.database().ref(branch + auth);
           personRef.update({
@@ -107,6 +117,7 @@ export class SignupPage {
           });
       }
 
+      //Deze functie maakt de user als school aan in de database
       saveSchoolProfile(name: string, location: string, soort: string, TorS: string, auth: string, branch: string): void {
         const personRef: firebase.database.Reference = firebase.database().ref(branch + auth);
         personRef.update({

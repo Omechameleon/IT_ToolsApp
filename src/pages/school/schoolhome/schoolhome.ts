@@ -5,9 +5,7 @@ import * as firebase from 'firebase/app';
 import { LoginPage } from '../../login/login';
 import { EditschoolprofilePage } from '../editschoolprofile/editschoolprofile';
 import { TeacherlistPage } from '../teacherlist/teacherlist';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
-import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { SchoolchatselectionPage } from '../schoolchatselection/schoolchatselection';
 
 
@@ -24,6 +22,7 @@ export class SchoolhomePage {
   {
   }
 
+  //Binnen ionViewDidLoad() halen we alle huidige data op voor de huidige user
   ionViewDidLoad(){
     this.afAuth.authState.take(1).subscribe(data => {
       if(data && data.email && data.uid)
@@ -43,10 +42,12 @@ export class SchoolhomePage {
     });
   }
 
+
+  //Onderstaande code behelst uitloggen en het navigeren tussen pagina's
+  
   signout()
   {
     this.afAuth.auth.signOut();
-    this.navCtrl.setRoot(LoginPage);
   }
 
   editProfile()
