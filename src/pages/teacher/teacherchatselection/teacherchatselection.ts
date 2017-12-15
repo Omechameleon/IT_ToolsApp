@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
-import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { TeacherchatPage } from '../teacherchat/teacherchat';
-import { empty } from 'rxjs/Observer';
 import { TeacherhomePage } from '../teacherhome/teacherhome';
 
 /**

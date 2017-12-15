@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { SchoolhomePage } from "../schoolhome/schoolhome";
 /**
  * Generated class for the EditschoolprofilePage page.
  *
@@ -24,6 +23,7 @@ export class EditschoolprofilePage {
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  //Elke keer bij het tonen van de EditschoolprofilePage halen we de huidige data van de user op uit de database
   ionViewDidEnter(){
     this.afAuth.authState.take(1).subscribe(data => {
       if(data && data.uid)
@@ -36,6 +36,9 @@ export class EditschoolprofilePage {
     });
   }
 
+  //saveProfile zal de oude data van de user in de database updaten met de nieuwe data
+  //In de htmlpagina zit een veiligheid ingebouwd waardoor er geen lege data kan worden doorgegeven
+  //Ook wordt saveProfile niet aangeroepen als er geen data aangepast is
   saveProfile(name: string, soort: string, location: string){
     this.afAuth.authState.take(1).subscribe(auth => {
       const personRef: firebase.database.Reference = firebase.database().ref('/school/' + auth.uid);
