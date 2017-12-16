@@ -27,6 +27,7 @@ export class TeacherchatselectionPage {
   
 
   constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+    //We nemen de data van de huidige geauthenticeerde user en geven ze door aan de onLoading methode
     this.afAuth.authState.take(1).subscribe(data => {this.teacherAuth = data.uid});
     this.afAuth.authState.take(1).subscribe(auth => 
       {
@@ -35,9 +36,12 @@ export class TeacherchatselectionPage {
   }
   
   onLoading(auth: any) {
+
+    //Deze checks gebruiken we om problemen met async te vermijden
     var check1 = 0;
     var check2 = 0;
 
+    //We halen alle schooldata op
     const personRef2: firebase.database.Reference = firebase.database().ref(`/school/`);
     personRef2.on('value', personSnapshot => {
     this.allSchoolData = personSnapshot.val();
@@ -47,6 +51,7 @@ export class TeacherchatselectionPage {
     }
     });
 
+    //We halen alle chatdata op
     const personRef3: firebase.database.Reference = firebase.database().ref(`/chat/`);
     personRef3.on('value', personSnapshot => {
     this.allChatData = personSnapshot.val();
@@ -57,6 +62,8 @@ export class TeacherchatselectionPage {
     });
   }
 
+  //We controleren voor welke scholen de huidige user een actieve chat heeft
+  //We steken de uid van deze scholen in de activeChatPartners array
   checkData()
   { 
     var index = 0;
@@ -71,6 +78,8 @@ export class TeacherchatselectionPage {
       }
     }
 
+    //Als er geen actieve chatpartners zijn wordt dit gemeld aan de user 
+    //en wordt de user teruggestuurd naar de homepage
     if(this.activeChatPartners.length == 0)
     {
       let confirm = this.alertCtrl.create({
@@ -85,6 +94,9 @@ export class TeacherchatselectionPage {
       this.navCtrl.setRoot(TeacherhomePage);
     }
 
+    //We vergelijken nu de array met actieve chatpartners met die van alle schooluid's
+    //Bij overeenkomst wordt alle data voor die school binnen de array allUsableSchoolData
+    //Deze data tonen we in onze cards
     index = 0;
     for(var schoolUid in this.allSchoolData)
     {
@@ -96,6 +108,7 @@ export class TeacherchatselectionPage {
     }
   }
 
+  //We sturen de user door naar de TeacherChatPage en geven de nodige data mee
   openChat(auth: string)
   {
     this.navCtrl.push(TeacherchatPage, {
@@ -104,6 +117,8 @@ export class TeacherchatselectionPage {
     });
   }
 
+  //Als de user zijn/haar chat met een school wil verwijderen vragen we eerst om bevestiging
+  //Bij bevestiging verwijderen we de branch in de database voor de gekozen school bij deze leerkracht
   deleteChat(schoolAuth: string)
   {
     let confirm = this.alertCtrl.create({
