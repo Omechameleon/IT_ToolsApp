@@ -35,13 +35,15 @@ export class TeacherchatPage {
     //We halen de bestaande boodschappen van de huidige chat op
     this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' + this.teacherAuthentication).valueChanges().subscribe( data => {
       this.messages = data;
+      let dimensions = this.content.getContentDimensions();
+      this.content.scrollTo(0, dimensions.contentHeight+9999, 100);
     });
   }
 
   //We scrollen meteen naar de onderkant van de chat bij het "binnenkomen"
   ionViewDidEnter() {
     let dimensions = this.content.getContentDimensions();
-    this.content.scrollTo(0, dimensions.contentHeight+100, 100);
+    this.content.scrollTo(0, dimensions.contentHeight+9999, 100);
   }
 
   //sendMessage stuurt de getypte boodschap (en door wie) door naar de database waarna de input weer geleegd wordt
@@ -56,6 +58,6 @@ export class TeacherchatPage {
     });
     this.message = "";
     let dimensions = this.content.getContentDimensions();
-    this.content.scrollTo(0, dimensions.contentHeight+100, 100);  
+    this.content.scrollTo(0, dimensions.contentHeight+9999, 100); 
   }
 }
