@@ -37,8 +37,6 @@ export class SchoolchatPage {
     this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).valueChanges().subscribe( data => 
     {
       this.messages = data;
-      let dimensions = this.content.getContentDimensions();
-      this.content.scrollTo(0, dimensions.contentHeight+9999, 100);
     });
   }
   
