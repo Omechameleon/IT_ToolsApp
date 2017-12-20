@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
@@ -47,7 +48,8 @@ export class SignupPage {
     schoolBranch : "/school/"
   };
 
-  constructor(private navCtrl: NavController,
+  constructor(private nativePageTransitions: NativePageTransitions, 
+    private navCtrl: NavController,
     private navParams: NavParams,
     private alertCtrl: AlertController,
     private afAuth: AngularFireAuth,
@@ -55,6 +57,20 @@ export class SignupPage {
     this.signupData.email = this.navParams.get('email');
   }
 
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 200,
+       slowdownfactor: 3,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 150,
+       fixedPixelsTop: 0,
+       fixedPixelsBottom: 60
+      };
+    this.nativePageTransitions.slide(options);
+   }
+   
   //Deze signupfunctie maakt de gebruiker aan in de database indien er aan bepaalde voorwaarden is voldaan
   signup() {
     

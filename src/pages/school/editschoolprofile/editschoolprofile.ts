@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 /**
@@ -19,10 +20,24 @@ export class EditschoolprofilePage {
 
   public schoolProfileData = {};
 
-  constructor( private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth,
+  constructor(private nativePageTransitions: NativePageTransitions, private afDatabase: AngularFireDatabase, private afAuth: AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 200,
+       slowdownfactor: 3,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 150,
+       fixedPixelsTop: 0,
+       fixedPixelsBottom: 60
+      };
+    this.nativePageTransitions.slide(options);
+   }
+   
   //Elke keer bij het tonen van de EditschoolprofilePage halen we de huidige data van de user op uit de database
   ionViewDidEnter(){
     this.afAuth.authState.take(1).subscribe(data => {

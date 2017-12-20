@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -21,12 +22,23 @@ export class ResetpasswordPage {
   email = ""
   captcha = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public toastCtrl: ToastController) {
+  constructor(private nativePageTransitions: NativePageTransitions, public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, public toastCtrl: ToastController) {
     this.makeid();
   }
 
-  ionViewDidLoad() {
-  }
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 200,
+       slowdownfactor: 3,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 150,
+       fixedPixelsTop: 0,
+       fixedPixelsBottom: 60
+      };
+    this.nativePageTransitions.slide(options);
+   }
 
   //We maken een random code aan als een extra beveiligingsmaatregel
   makeid() {

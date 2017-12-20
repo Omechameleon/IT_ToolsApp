@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content} from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { AngularFireDatabase } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
 
@@ -27,7 +28,7 @@ export class SchoolchatPage {
   subscription;
   messages: object[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) 
+  constructor(private nativePageTransitions: NativePageTransitions, public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) 
   {
     //We wijzen de waarden die we van de vorige pagina doorgegeven krijgen toe aan de correcte variabelen
     this.username = navParams.get('schoolAuthentication');
@@ -40,6 +41,20 @@ export class SchoolchatPage {
     });
   }
   
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 200,
+       slowdownfactor: 3,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 150,
+       fixedPixelsTop: 0,
+       fixedPixelsBottom: 60
+      };
+    this.nativePageTransitions.slide(options);
+   }
+   
   //We scrollen meteen naar de onderkant van de chat bij het "binnenkomen"
   ionViewDidEnter() {
     let dimensions = this.content.getContentDimensions();

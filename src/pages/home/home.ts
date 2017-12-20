@@ -3,9 +3,10 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { LoginPage } from '../login/login';
-import { AngularFireDatabase/*, AngularFireList*/ } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { TeacherhomePage } from '../teacher/teacherhome/teacherhome';
 import { SchoolhomePage } from '../school/schoolhome/schoolhome';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 @Component({
   selector: 'page-home',
@@ -18,11 +19,25 @@ export class HomePage {
   public teacherProfileData = {TorS: ''};
   public schoolProfileData = {TorS: ''};
 
-  constructor(private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth, private loadingCtrl: LoadingController)
+  constructor(private nativePageTransitions: NativePageTransitions, private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth, private loadingCtrl: LoadingController)
   {
     //We roepen meteen de onReached methode aan
     this.onReached();
   }
+
+  ionViewWillLeave() {
+     let options: NativeTransitionOptions = {
+        direction: 'up',
+        duration: 200,
+        slowdownfactor: 3,
+        slidePixels: 20,
+        iosdelay: 100,
+        androiddelay: 150,
+        fixedPixelsTop: 0,
+        fixedPixelsBottom: 60
+       };
+     this.nativePageTransitions.slide(options);
+    }
 
   ionViewDidLoad() 
   {

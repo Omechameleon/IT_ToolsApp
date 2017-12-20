@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -29,11 +30,25 @@ export class TeacherlistPage {
   public backupAllUsableTeacherData = [];
   
 
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
+  constructor(private nativePageTransitions: NativePageTransitions, private alertCtrl: AlertController, private toastCtrl: ToastController, private afDatabase: AngularFireDatabase, private navCtrl: NavController, private afAuth: AngularFireAuth)
   {
     this.onLoading();
   }
 
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 200,
+       slowdownfactor: 3,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 150,
+       fixedPixelsTop: 0,
+       fixedPixelsBottom: 60
+      };
+    this.nativePageTransitions.slide(options);
+   }
+   
   //Binnen onLoading halen we alle nodige data op uit de database
   //We gebruiken wederom twee checks om async problemen te vermijden
   onLoading() {

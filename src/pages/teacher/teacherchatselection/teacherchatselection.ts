@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController} from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -26,7 +27,7 @@ export class TeacherchatselectionPage {
   public allChatData = {};
   
 
-  constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private nativePageTransitions: NativePageTransitions, private alertCtrl: AlertController, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
     //We nemen de data van de huidige geauthenticeerde user en geven ze door aan de onLoading methode
     this.afAuth.authState.take(1).subscribe(data => {this.teacherAuth = data.uid});
     this.afAuth.authState.take(1).subscribe(auth => 
@@ -35,6 +36,20 @@ export class TeacherchatselectionPage {
       });
   }
   
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+       direction: 'up',
+       duration: 200,
+       slowdownfactor: 3,
+       slidePixels: 20,
+       iosdelay: 100,
+       androiddelay: 150,
+       fixedPixelsTop: 0,
+       fixedPixelsBottom: 60
+      };
+    this.nativePageTransitions.slide(options);
+   }
+   
   onLoading(auth: any) {
 
     //Deze checks gebruiken we om problemen met async te vermijden
