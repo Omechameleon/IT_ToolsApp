@@ -11,7 +11,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-resetpassword',
   templateUrl: 'resetpassword.html',

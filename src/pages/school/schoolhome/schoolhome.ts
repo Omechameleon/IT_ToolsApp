@@ -10,7 +10,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { SchoolchatselectionPage } from '../schoolchatselection/schoolchatselection';
 
 
-@IonicPage()
+
 @Component({
   selector: 'page-schoolhome',
   templateUrl: 'schoolhome.html',

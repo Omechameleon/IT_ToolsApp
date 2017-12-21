@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Content} from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { AngularFireDatabase } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
+import { Vibration } from '@ionic-native/vibration';
 
 /**
  * Generated class for the SchoolchatPage page.
@@ -11,7 +12,7 @@ import 'rxjs/add/operator/map';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-schoolchat',
   templateUrl: 'schoolchat.html',
@@ -28,7 +29,7 @@ export class SchoolchatPage {
   subscription;
   messages: object[] = [];
 
-  constructor(private nativePageTransitions: NativePageTransitions, public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) 
+  constructor(private vibrate: Vibration, private nativePageTransitions: NativePageTransitions, public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase) 
   {
     //We wijzen de waarden die we van de vorige pagina doorgegeven krijgen toe aan de correcte variabelen
     this.username = navParams.get('schoolAuthentication');
@@ -38,6 +39,7 @@ export class SchoolchatPage {
     this.subscription = this.afDatabase.list('/chat/' + this.schoolAuthentication + '/' +this.teacherAuthentication).valueChanges().subscribe( data => 
     {
       this.messages = data;
+      this.vibrate.vibrate(1000);
     });
   }
   

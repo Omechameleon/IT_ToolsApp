@@ -13,7 +13,7 @@ import { SchoolchatPage } from '../schoolchat/schoolchat';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-teacherlist',
   templateUrl: 'teacherlist.html',

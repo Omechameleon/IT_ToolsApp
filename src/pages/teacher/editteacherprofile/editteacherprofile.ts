@@ -6,7 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
 
-@IonicPage()
+
 @Component({
   selector: 'page-editteacherprofile',
   templateUrl: 'editteacherprofile.html',

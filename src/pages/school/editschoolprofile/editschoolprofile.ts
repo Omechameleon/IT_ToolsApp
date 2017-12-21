@@ -11,7 +11,7 @@ import * as firebase from 'firebase/app';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-editschoolprofile',
   templateUrl: 'editschoolprofile.html',

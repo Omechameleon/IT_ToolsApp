@@ -14,7 +14,6 @@ import { SchoolhomePage } from '../schoolhome/schoolhome';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-schoolchatselection',
   templateUrl: 'schoolchatselection.html',
